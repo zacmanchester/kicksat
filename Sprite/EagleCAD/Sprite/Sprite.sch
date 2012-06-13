@@ -1805,11 +1805,12 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <part name="GND2" library="SparkFun" deviceset="GND" device=""/>
 <part name="U1" library="TI_MSP430_v16" deviceset="CC430F513X---RGZ48" device="" value="CC430F5137"/>
 <part name="Q1" library="ABM11_JAA" deviceset="ABM11_CERAMIC_SMD_CRYSTAL" device="ABM11" value="26MHz"/>
-<part name="C1" library="SparkFun" deviceset="CAP" device="0603-CAP" value="27 pF"/>
-<part name="C2" library="SparkFun" deviceset="CAP" device="0603-CAP" value="27 pF"/>
+<part name="C1" library="SparkFun" deviceset="CAP" device="0402-CAP" value="27 pF"/>
+<part name="C2" library="SparkFun" deviceset="CAP" device="0402-CAP" value="27 pF"/>
 <part name="R1" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="56 K"/>
 <part name="C3" library="SparkFun" deviceset="CAP" device="0603-CAP" value="470 nF"/>
 <part name="C4" library="SparkFun" deviceset="CAP" device="0603-CAP" value="470 nF"/>
+<part name="R2" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="47 K"/>
 <part name="GND3" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND4" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun" deviceset="GND" device=""/>
@@ -1820,9 +1821,9 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <part name="GND10" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+2" library="SparkFun" deviceset="VCC" device=""/>
 <part name="U2" library="SparkFun" deviceset="HMC5883L" device="SMD"/>
-<part name="C5" library="SparkFun" deviceset="CAP" device="0603-CAP" value=".1uF"/>
-<part name="C6" library="SparkFun" deviceset="CAP" device="0603-CAP" value=".22uF"/>
-<part name="C7" library="SparkFun" deviceset="CAP" device="0603-CAP" value="4.7uF"/>
+<part name="C5" library="SparkFun" deviceset="CAP" device="0402-CAP" value=".1uF"/>
+<part name="C6" library="SparkFun" deviceset="CAP" device="0402-CAP" value=".22uF"/>
+<part name="C7" library="SparkFun" deviceset="CAP" device="0402-CAP" value="4.7uF"/>
 <part name="GND11" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND12" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun" deviceset="GND" device=""/>
@@ -1871,6 +1872,7 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <instance part="R1" gate="G$1" x="182.88" y="76.2"/>
 <instance part="C3" gate="G$1" x="203.2" y="83.82" rot="R180"/>
 <instance part="C4" gate="G$1" x="124.46" y="99.06" rot="R270"/>
+<instance part="R2" gate="G$1" x="220.98" y="99.06" rot="R90"/>
 <instance part="GND3" gate="1" x="180.34" y="99.06" rot="R90"/>
 <instance part="GND4" gate="1" x="185.42" y="116.84" rot="R90"/>
 <instance part="GND5" gate="1" x="193.04" y="76.2" rot="R90"/>
@@ -1933,7 +1935,8 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <wire x1="213.36" y1="63.5" x2="213.36" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="63.5" x2="213.36" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="106.68" x2="213.36" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="106.68" x2="213.36" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="106.68" x2="213.36" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="104.14" x2="213.36" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="96.52" x2="213.36" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="96.52" x2="213.36" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="78.74" x2="203.2" y2="78.74" width="0.1524" layer="91"/>
@@ -1943,6 +1946,7 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <wire x1="213.36" y1="73.66" x2="213.36" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="71.12" x2="213.36" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="71.12" x2="213.36" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="220.98" y1="104.14" x2="213.36" y2="104.14" width="0.1524" layer="91"/>
 <junction x="116.84" y="60.96"/>
 <junction x="213.36" y="60.96"/>
 <junction x="213.36" y="63.5"/>
@@ -1951,6 +1955,7 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <junction x="213.36" y="78.74"/>
 <junction x="213.36" y="73.66"/>
 <junction x="213.36" y="71.12"/>
+<junction x="213.36" y="104.14"/>
 <pinref part="U1" gate="G$1" pin="27"/>
 <pinref part="U1" gate="G$1" pin="22"/>
 <pinref part="U1" gate="G$1" pin="8"/>
@@ -1961,6 +1966,7 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <pinref part="C3" gate="G$1" pin="1"/>
 <pinref part="U1" gate="G$1" pin="32"/>
 <pinref part="U1" gate="G$1" pin="31"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 <pinref part="P+2" gate="1" pin="VCC"/>
 <wire x1="213.36" y1="121.92" x2="213.36" y2="106.68" width="0.1524" layer="91"/>
 <junction x="213.36" y="106.68"/>
@@ -2194,9 +2200,12 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </net>
 <net name="RST" class="0">
 <segment>
-<wire x1="175.26" y1="93.98" x2="241.3" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="93.98" x2="220.98" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="220.98" y1="93.98" x2="241.3" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="40"/>
+<pinref part="R2" gate="G$1" pin="1"/>
 <pinref part="JP1" gate="G$1" pin="1"/>
+<junction x="220.98" y="93.98"/>
 </segment>
 </net>
 <net name="TEST" class="0">
