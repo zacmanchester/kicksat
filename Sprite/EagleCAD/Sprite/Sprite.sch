@@ -108,13 +108,13 @@
 <wire x1="31.8" y1="0" x2="31.8" y2="13" width="0.127" layer="21"/>
 <wire x1="0" y1="0" x2="2.6" y2="2.9" width="0.127" layer="21"/>
 <wire x1="31.8" y1="13" x2="2.6" y2="2.9" width="0.127" layer="21"/>
-<smd name="MINUS2" x="15.9" y="-1.5" dx="29" dy="1" layer="1"/>
+<smd name="MINUS2" x="15.9" y="-1" dx="29" dy="1" layer="1"/>
 <smd name="PLUS" x="15.9" y="7.75" dx="27" dy="12" layer="1"/>
 <wire x1="31.8" y1="15.5" x2="0" y2="15.5" width="0.127" layer="21"/>
 <wire x1="0" y1="15.5" x2="0" y2="2.5" width="0.127" layer="21"/>
 <wire x1="31.8" y1="15.5" x2="29.2" y2="12.6" width="0.127" layer="21"/>
 <wire x1="0" y1="2.5" x2="29.2" y2="12.6" width="0.127" layer="21"/>
-<smd name="MINUS1" x="15.9" y="17" dx="29" dy="1" layer="1"/>
+<smd name="MINUS1" x="15.9" y="16.5" dx="29" dy="1" layer="1"/>
 </package>
 </packages>
 <symbols>
@@ -1799,10 +1799,8 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </classes>
 <parts>
 <part name="S1" library="TASC" deviceset="TASC" device=""/>
-<part name="S2" library="TASC" deviceset="TASC" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+1" library="SparkFun" deviceset="VCC" device=""/>
-<part name="GND2" library="SparkFun" deviceset="GND" device=""/>
 <part name="U1" library="TI_MSP430_v16" deviceset="CC430F513X---RGZ48" device="" value="CC430F5137"/>
 <part name="Q1" library="ABM11_JAA" deviceset="ABM11_CERAMIC_SMD_CRYSTAL" device="ABM11" value="26MHz"/>
 <part name="C1" library="SparkFun" deviceset="CAP" device="0603-CAP" value="27 pF"/>
@@ -1860,10 +1858,8 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </plain>
 <instances>
 <instance part="S1" gate="G$1" x="360.68" y="86.36"/>
-<instance part="S2" gate="G$1" x="391.16" y="86.36"/>
 <instance part="GND1" gate="1" x="360.68" y="66.04"/>
-<instance part="P+1" gate="1" x="375.92" y="101.6"/>
-<instance part="GND2" gate="1" x="391.16" y="66.04"/>
+<instance part="P+1" gate="1" x="360.68" y="101.6"/>
 <instance part="U1" gate="G$1" x="152.4" y="86.36"/>
 <instance part="Q1" gate="G$1" x="233.68" y="48.26" rot="R90"/>
 <instance part="C1" gate="G$1" x="231.14" y="35.56"/>
@@ -1916,11 +1912,7 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <net name="VCC" class="0">
 <segment>
 <pinref part="S1" gate="G$1" pin="PLUS"/>
-<pinref part="S2" gate="G$1" pin="PLUS"/>
-<wire x1="360.68" y1="101.6" x2="375.92" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="P+1" gate="1" pin="VCC"/>
-<wire x1="375.92" y1="101.6" x2="391.16" y2="101.6" width="0.1524" layer="91"/>
-<junction x="375.92" y="101.6"/>
 </segment>
 <segment>
 <wire x1="213.36" y1="60.96" x2="175.26" y2="60.96" width="0.1524" layer="91"/>
@@ -2026,16 +2018,6 @@ Standard 2-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <wire x1="360.68" y1="68.58" x2="365.76" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="365.76" y1="68.58" x2="365.76" y2="71.12" width="0.1524" layer="91"/>
 <junction x="360.68" y="68.58"/>
-</segment>
-<segment>
-<pinref part="GND2" gate="1" pin="GND"/>
-<pinref part="S2" gate="G$1" pin="MINUS1"/>
-<wire x1="391.16" y1="68.58" x2="386.08" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="386.08" y1="68.58" x2="386.08" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="S2" gate="G$1" pin="MINUS2"/>
-<wire x1="391.16" y1="68.58" x2="396.24" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="396.24" y1="68.58" x2="396.24" y2="71.12" width="0.1524" layer="91"/>
-<junction x="391.16" y="68.58"/>
 </segment>
 <segment>
 <pinref part="C4" gate="G$1" pin="2"/>
