@@ -3,6 +3,7 @@
 .Trash
 Thumbs.db
 ~*
-.s#*
-.b#*
-.l#*
+*.s#*
+*.b#*
+*.l#*
+*.eps
