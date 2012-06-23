@@ -1,0 +1,32 @@
+Partlist exported from /Users/zacman/Documents/Git/kicksat/Sprite/EagleCAD/Sprite/Sprite.sch at 6/22/12 9:40 AM
+
+Assembly variant: 
+
+Part Value       Device                         Package                   Description                                        
+C1   27 pF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C2   27 pF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C3   470 nF      CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C4   470 nF      CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C5   .1uF        CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C6   .22uF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C7   4.7uF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C8   2.2nF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C9   0.1uF       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C10  10nF        CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C11  2.2 nF      CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C12  100 Nf      CAP0603-CAP                    0603-CAP                  Capacitor                                          
+C13  10 Nf       CAP0603-CAP                    0603-CAP                  Capacitor                                          
+JP1              M02PTH                         1X02                      Header 2                                           
+JP2              M02PTH                         1X02                      Header 2                                           
+L1   12 nH       INDUCTOR0603                   0603                      Inductors                                          
+Q1   26MHz       ABM11_CERAMIC_SMD_CRYSTALABM11 ABM11_CERAMIC-SMD-CRYSTAL ABM11 CERAMIC SMD ULTRA MINIATURE QUARTZ CRYSTAL   
+R1   56K         RESISTOR0603-RES               0603-RES                  Resistor                                           
+R2   47K         RESISTOR0603-RES               0603-RES                  Resistor                                           
+R5   4.7K        RESISTOR0603-RES               0603-RES                  Resistor                                           
+R6   4.7K        RESISTOR0603-RES               0603-RES                  Resistor                                           
+S1   TASC        TASC                           TASC                                                                         
+U$1  ANTENNA     ANTENNA                        ANTENNA                                                                      
+U$2  ANTENNA     ANTENNA                        ANTENNA                                                                      
+U1   CC430F5137  CC430F513X---RGZ48             RGZ48                     ***CC430F513X***RGZ48 **                           
+U2   HMC5883LSMD HMC5883LSMD                    16LPCC                    3 Axis Digital Compass IC                          
+U3   ITG-3200    ITG-3200                       QFN-24                    ITG-3200 3-axis gyro, digital output, qfn24 package
