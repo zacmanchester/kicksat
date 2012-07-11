@@ -1,4 +1,4 @@
-Partlist exported from /Users/zacman/Documents/GitHub/kicksat/Sprite/EagleCAD/Sprite/Replica.sch at 7/11/12 12:10 PM
+Partlist exported from /Users/zacman/Documents/GitHub/kicksat/Sprite/EagleCAD/Sprite/Replica.sch at 7/11/12 2:39 PM
 
 Assembly variant: 
 
@@ -25,6 +25,10 @@ R1    56K        RESISTOR0603-RES               0603-RES                  Resist
 R2    47K        RESISTOR0603-RES               0603-RES                  Resistor                
 R3    270R       RESISTOR0603-RES               0603-RES                  Resistor                
 R4    270R       RESISTOR0603-RES               0603-RES                  Resistor                
+R5    270R       RESISTOR0603-RES               0603-RES                  Resistor                
+R6    270R       RESISTOR0603-RES               0603-RES                  Resistor                
+R7    270R       RESISTOR0603-RES               0603-RES                  Resistor                
+R8    270R       RESISTOR0603-RES               0603-RES                  Resistor                
 S1    TASC       TASC                           TASC                                              
 U1    CC430F5137 CC430F513X---RGZ48             RGZ48                     ***CC430F513X***RGZ48 **
 X1    26 MHz     ABM11_CERAMIC_SMD_CRYSTALABM11 ABM11_CERAMIC-SMD-CRYSTAL ABM11 Crystal           
