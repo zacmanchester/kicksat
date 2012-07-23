@@ -2383,6 +2383,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND10" library="SparkFun" deviceset="GND" device=""/>
 <part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="270R"/>
 <part name="X1" library="ABM11" deviceset="ABM11_CERAMIC_SMD_CRYSTAL" device="ABM11" value="26 MHz"/>
+<part name="JP3" library="SparkFun" deviceset="M02" device="PTH"/>
 </parts>
 <sheets>
 <sheet>
@@ -2390,7 +2391,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </plain>
 <instances>
 <instance part="GND1" gate="1" x="360.68" y="66.04"/>
-<instance part="P+1" gate="1" x="360.68" y="106.68"/>
+<instance part="P+1" gate="1" x="360.68" y="114.3"/>
 <instance part="U1" gate="G$1" x="152.4" y="86.36"/>
 <instance part="C1" gate="G$1" x="223.52" y="35.56"/>
 <instance part="C2" gate="G$1" x="254" y="58.42" rot="R90"/>
@@ -2453,6 +2454,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <instance part="GND10" gate="1" x="86.36" y="99.06"/>
 <instance part="R5" gate="G$1" x="104.14" y="104.14"/>
 <instance part="X1" gate="X$1" x="236.22" y="43.18"/>
+<instance part="JP3" gate="G$1" x="345.44" y="106.68"/>
 </instances>
 <busses>
 </busses>
@@ -2547,9 +2549,10 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="177.8" y1="40.64" x2="180.34" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="S1" gate="G$1" pin="PLUS"/>
+<pinref part="JP3" gate="G$1" pin="2"/>
 <pinref part="P+1" gate="1" pin="VCC"/>
-<wire x1="360.68" y1="101.6" x2="360.68" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="353.06" y1="109.22" x2="360.68" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="360.68" y1="109.22" x2="360.68" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -2881,19 +2884,24 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="109.22" y1="104.14" x2="129.54" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="VSOLAR" class="0">
+<segment>
+<pinref part="JP3" gate="G$1" pin="1"/>
+<pinref part="S1" gate="G$1" pin="PLUS"/>
+<wire x1="353.06" y1="106.68" x2="360.68" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="360.68" y1="106.68" x2="360.68" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 <errors>
-<approved hash="104,1,355.6,71.12,S1,MINUS1,GND,,,"/>
-<approved hash="104,1,360.68,101.6,S1,PLUS,VCC,,,"/>
-<approved hash="104,1,365.76,71.12,S1,MINUS2,GND,,,"/>
 <approved hash="104,1,129.54,99.06,U1,7,N$4,,,"/>
 <approved hash="104,1,129.54,96.52,U1,8,VCC,,,"/>
-<approved hash="104,1,175.26,60.96,U1,27,VCC,,,"/>
+<approved hash="104,1,175.26,60.96,U1,27,VCCRF,,,"/>
 <approved hash="104,1,129.54,60.96,U1,22,VCC,,,"/>
-<approved hash="104,1,175.26,71.12,U1,31,VCC,,,"/>
-<approved hash="104,1,175.26,73.66,U1,32,VCC,,,"/>
+<approved hash="104,1,175.26,71.12,U1,31,VCCRF,,,"/>
+<approved hash="104,1,175.26,73.66,U1,32,VCCRF,,,"/>
 <approved hash="104,1,175.26,76.2,U1,33,N$3,,,"/>
 <approved hash="104,1,175.26,78.74,U1,34,VCC,,,"/>
 <approved hash="104,1,175.26,96.52,U1,41,VCC,,,"/>
@@ -2902,6 +2910,9 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <approved hash="202,1,175.26,104.14,U1,44,,,,"/>
 <approved hash="202,1,175.26,111.76,U1,47,,,,"/>
 <approved hash="104,1,175.26,116.84,U1,49,GND,,,"/>
+<approved hash="104,1,355.6,71.12,S1,MINUS1,GND,,,"/>
+<approved hash="104,1,360.68,101.6,S1,PLUS,VSOLAR,,,"/>
+<approved hash="104,1,365.76,71.12,S1,MINUS2,GND,,,"/>
 <approved hash="115,1,244.517,91.2453,JP1,,,,,"/>
 <approved hash="115,1,241.977,116.645,JP2,,,,,"/>
 <approved hash="117,1,121.92,109.22,SCL,,,,,"/>
