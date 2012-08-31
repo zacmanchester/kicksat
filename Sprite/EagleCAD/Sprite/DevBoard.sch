@@ -2357,8 +2357,8 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="P+7" library="SparkFun" deviceset="VCC" device=""/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND21" library="SparkFun" deviceset="GND" device=""/>
-<part name="JP1" library="SparkFun" deviceset="M02" device="PTH"/>
 <part name="JP2" library="SparkFun" deviceset="M02" device="PTH"/>
+<part name="JP1" library="SparkFun" deviceset="M02" device="PTH"/>
 <part name="GND16" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+4" library="SparkFun" deviceset="VCC" device=""/>
 <part name="ANT-N" library="SpriteAntenna" deviceset="ANTENNA" device=""/>
@@ -2383,6 +2383,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND10" library="SparkFun" deviceset="GND" device=""/>
 <part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="270R"/>
 <part name="X1" library="ABM11" deviceset="ABM11_CERAMIC_SMD_CRYSTAL" device="ABM11" value="26 MHz"/>
+<part name="JP4" library="SparkFun" deviceset="M02" device="PTH"/>
 <part name="JP3" library="SparkFun" deviceset="M02" device="PTH"/>
 </parts>
 <sheets>
@@ -2428,8 +2429,8 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <instance part="P+7" gate="1" x="332.74" y="243.84"/>
 <instance part="GND20" gate="1" x="322.58" y="180.34"/>
 <instance part="GND21" gate="1" x="203.2" y="88.9" rot="R180"/>
-<instance part="JP1" gate="G$1" x="248.92" y="93.98" rot="R180"/>
-<instance part="JP2" gate="G$1" x="246.38" y="119.38" rot="R180"/>
+<instance part="JP2" gate="G$1" x="248.92" y="93.98" rot="R180"/>
+<instance part="JP1" gate="G$1" x="246.38" y="119.38" rot="R180"/>
 <instance part="GND16" gate="1" x="236.22" y="111.76"/>
 <instance part="P+4" gate="1" x="236.22" y="121.92"/>
 <instance part="ANT-N" gate="G$1" x="231.14" y="76.2"/>
@@ -2454,7 +2455,8 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <instance part="GND10" gate="1" x="86.36" y="99.06"/>
 <instance part="R5" gate="G$1" x="104.14" y="104.14"/>
 <instance part="X1" gate="X$1" x="236.22" y="43.18"/>
-<instance part="JP3" gate="G$1" x="345.44" y="106.68"/>
+<instance part="JP4" gate="G$1" x="345.44" y="106.68"/>
+<instance part="JP3" gate="G$1" x="261.62" y="104.14" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -2505,7 +2507,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <pinref part="P+7" gate="1" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="1"/>
+<pinref part="JP1" gate="G$1" pin="1"/>
 <pinref part="P+4" gate="1" pin="VCC"/>
 <wire x1="238.76" y1="119.38" x2="236.22" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="119.38" x2="236.22" y2="121.92" width="0.1524" layer="91"/>
@@ -2549,7 +2551,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="177.8" y1="40.64" x2="180.34" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP3" gate="G$1" pin="2"/>
+<pinref part="JP4" gate="G$1" pin="2"/>
 <pinref part="P+1" gate="1" pin="VCC"/>
 <wire x1="353.06" y1="109.22" x2="360.68" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="109.22" x2="360.68" y2="114.3" width="0.1524" layer="91"/>
@@ -2660,7 +2662,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="2"/>
+<pinref part="JP1" gate="G$1" pin="2"/>
 <pinref part="GND16" gate="1" pin="GND"/>
 <wire x1="238.76" y1="116.84" x2="236.22" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="116.84" x2="236.22" y2="114.3" width="0.1524" layer="91"/>
@@ -2744,7 +2746,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <segment>
 <wire x1="175.26" y1="93.98" x2="226.06" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="40"/>
-<pinref part="JP1" gate="G$1" pin="1"/>
+<pinref part="JP2" gate="G$1" pin="1"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="226.06" y1="93.98" x2="233.68" y2="93.98" width="0.1524" layer="91"/>
 <junction x="226.06" y="93.98"/>
@@ -2757,7 +2759,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <segment>
 <wire x1="175.26" y1="91.44" x2="241.3" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="39"/>
-<pinref part="JP1" gate="G$1" pin="2"/>
+<pinref part="JP2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -2886,7 +2888,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </net>
 <net name="VSOLAR" class="0">
 <segment>
-<pinref part="JP3" gate="G$1" pin="1"/>
+<pinref part="JP4" gate="G$1" pin="1"/>
 <pinref part="S1" gate="G$1" pin="PLUS"/>
 <wire x1="353.06" y1="106.68" x2="360.68" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="106.68" x2="360.68" y2="101.6" width="0.1524" layer="91"/>
