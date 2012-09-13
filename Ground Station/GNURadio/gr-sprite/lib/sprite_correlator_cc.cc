@@ -24,7 +24,10 @@
 
 #include <gr_io_signature.h>
 #include <sprite_correlator_cc.h>
+#include <cmath>
+#include <Eigen/Dense>
 
+using namespace Eigen;
 
 sprite_correlator_cc_sptr
 sprite_make_correlator_cc (int prn_id)
@@ -39,6 +42,8 @@ sprite_correlator_cc::sprite_correlator_cc (int prn_id)
 		gr_make_io_signature (1, 1, sizeof (gr_complex)))
 {
 	set_history(512);
+	generate_prn(prn_id);
+	generate_template(-500, 500);
 }
 
 
@@ -46,9 +51,108 @@ sprite_correlator_cc::~sprite_correlator_cc ()
 {
 }
 
+void sprite_correlator_cc::generate_prn(int prn_id)
+{
+	if(prn_id == -2)
+	{	
+		//Deep copy M-sequence
+		for (int k = 0; k < 512; k++)
+		{
+			m_prn[k] = mseq1[k];
+		}
+	}
+	else if(prn_id == -1)
+	{	
+		//Deep copy M-sequence
+		for (int k = 0; k < 512; k++)
+		{
+			m_prn[k] = mseq2[k];
+		}
+	}
+	else //if(prn_id >= 0 && prn_id < 512)
+	{	
+		//Generate Gold Codes by xor'ing 2 M-sequences in different phases
+		for (int k = 0; k < 512-prn_id; k++)
+		{
+			m_prn[k] = mseq1[k] ^ mseq2[k+prn_id];
+		}
+		for (int k = 512-prn_id; k < 512; k++)
+		{
+			m_prn[k] = mseq1[k] ^ mseq2[k-512+prn_id];
+		}
+	}
+}
 
-int
-sprite_correlator_cc::work (int noutput_items,
+Vector512c sprite_correlator_cc::cc430_modulator(int* prnBits)
+{
+	Vector512f diffs;
+	Vector512f iBB;
+	Vector512f qBB;
+	Vector512c baseBand;
+	
+	
+	//Differentially encode with +/-1 values
+	diffs(0) = -2*prnBits[0] + 1;
+	for (int k = 1; k < 512; k++)
+	{
+		char diff = prnBits[k]-prnBits[k-1];
+		if(diff == 0)
+		{
+			diffs(k) = 1;
+		}
+		else
+		{
+			diffs(k) = -1;
+		}
+	}
+	
+	//Initialize with offset between I and Q
+	iBB(0) = 1;
+	qBB(0) = diffs(0);
+	qBB(1) = diffs(0);
+	
+	for(int k = 1; k < 510; k+=2)
+	{
+		iBB(k) = diffs(k)*iBB(k-1);
+		iBB(k+1) = iBB(k);
+	}
+	iBB(511) = diffs(511)*iBB(510);
+	
+	for(int k = 2; k < 512; k+=2)
+	{
+		qBB(k) = diffs(k)*iBB(k-1);
+		qBB(k+1) = qBB(k);
+	}
+	
+	for(int k = 0; k < 512; k++)
+	{
+		baseBand(k) = iBB(k)*cos(M_PI/2*k) + 1i*qBB(k)*sin(M_PI/2*k);
+	}
+	
+	return baseBand;
+}
+
+void sprite_correlator_cc::generate_template(double minFreqOffset, double maxFreqOffset)
+{
+	Vector512c baseBand = cc430_modulator(m_prn);
+	
+	//Round to nearest 100 Hz
+	minFreqOffset = minFreqOffset - 100 - fmod(minFreqOffset, 100);
+	maxFreqOffset = maxFreqOffset + 100 - fmod(maxFreqOffset, 100);
+	int bins = (maxFreqOffset - minFreqOffset)/100 + 1;
+	
+	m_template = Matrix512c::Zero(bins,512);
+	for (int k = 0; k < bins; k++)
+	{
+		double freq = minFreqOffset + k*100;
+		for (int j = 0; j < 512; j++)
+		{
+			m_template(k,j) = conj(exp((std::complex<float>)(2i*M_PI*freq*j/50e3))*baseBand(j));
+		}
+	}
+}
+
+int sprite_correlator_cc::work (int noutput_items,
 			gr_vector_const_void_star &input_items,
 			gr_vector_void_star &output_items)
 {
@@ -56,8 +160,12 @@ sprite_correlator_cc::work (int noutput_items,
 	gr_complex *out = (gr_complex *) output_items[0];
 
 	// Do <+signal processing+>
-	for(int i = 0; i < noutput_items; i++) {
-		out[i] = in[i];
+	for(int k = 0; k < noutput_items; k++) {
+		
+		//wrap the input vector in an Eigen matrix
+		Map<const Vector512c> invec(&in[k]);
+		
+		out[k] = (m_template*invec).cwiseAbs().maxCoeff();
 	}
 
 	// Tell runtime system how many output items we produced.
