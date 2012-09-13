@@ -25,15 +25,14 @@
 #include <gr_sync_block.h>
 #include <Eigen/Dense>
 
-using namespace Eigen;
 
 class sprite_correlator_cc;
 typedef boost::shared_ptr<sprite_correlator_cc> sprite_correlator_cc_sptr;
 
 //Eigen vector/matrix typedefs
-typedef Matrix<float, 512, 1> Vector512f;
-typedef Matrix<gr_complex, 512, 1> Vector512c;
-typedef Matrix<gr_complex, Dynamic, 512> Matrix512c;
+typedef Eigen::Matrix<float, 512, 1> Vector512f;
+typedef Eigen::Matrix<gr_complex, 512, 1> Vector512c;
+typedef Eigen::Matrix<gr_complex, Eigen::Dynamic, 512> Matrix512c;
 
 SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
 
