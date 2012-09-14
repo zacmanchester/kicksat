@@ -4,7 +4,7 @@
   <key>sprite_correlator_cc</key>
   <category>Sprite</category>
   <import>import sprite</import>
-  <make>sprite.correlator_cc(prn_id)</make>
+  <make>sprite.correlator_cc($prn_id)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name

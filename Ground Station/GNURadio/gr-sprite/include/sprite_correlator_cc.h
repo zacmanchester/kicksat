@@ -24,7 +24,7 @@
 #include <sprite_api.h>
 #include <gr_sync_block.h>
 #include <Eigen/Dense>
-
+#include <unsupported/Eigen/FFT>
 
 class sprite_correlator_cc;
 typedef boost::shared_ptr<sprite_correlator_cc> sprite_correlator_cc_sptr;
@@ -51,10 +51,12 @@ class SPRITE_API sprite_correlator_cc : public gr_sync_block
 		int m_prn[512];
 		void generate_prn(int prn_id);
 		
+		Vector512c m_template;
 		Vector512c cc430_modulator(int* prnBits);
 		
-		Matrix512c m_template;
-		void generate_template(double minFreqOffset, double maxFreqOffset);
+		Vector512c m_temp1;
+		Vector512c m_temp2;
+		Eigen::FFT<float> m_fft;
 		
 		static int mseq1[512];
 		static int mseq2[512];

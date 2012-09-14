@@ -26,6 +26,8 @@
 #include <sprite_correlator_cc.h>
 #include <cmath>
 #include <Eigen/Dense>
+#include <unsupported/Eigen/FFT>
+#define EIGEN_FFTW_DEFAULT //Use FFTW instead of built in Eigen FFT
 
 using namespace Eigen;
 
@@ -43,7 +45,8 @@ sprite_correlator_cc::sprite_correlator_cc (int prn_id)
 {
 	set_history(512);
 	generate_prn(prn_id);
-	generate_template(-500, 500);
+	m_template = (cc430_modulator(m_prn)).conjugate();
+	m_fft.SetFlag(m_fft.Unscaled);
 }
 
 
@@ -90,7 +93,6 @@ Vector512c sprite_correlator_cc::cc430_modulator(int* prnBits)
 	Vector512f qBB;
 	Vector512c baseBand;
 	
-	
 	//Differentially encode with +/-1 values
 	diffs(0) = -2*prnBits[0] + 1;
 	for (int k = 1; k < 512; k++)
@@ -132,26 +134,6 @@ Vector512c sprite_correlator_cc::cc430_modulator(int* prnBits)
 	return baseBand;
 }
 
-void sprite_correlator_cc::generate_template(double minFreqOffset, double maxFreqOffset)
-{
-	Vector512c baseBand = cc430_modulator(m_prn);
-	
-	//Round to nearest 100 Hz
-	minFreqOffset = minFreqOffset - 100 - fmod(minFreqOffset, 100);
-	maxFreqOffset = maxFreqOffset + 100 - fmod(maxFreqOffset, 100);
-	int bins = (maxFreqOffset - minFreqOffset)/100 + 1;
-	
-	m_template = Matrix512c::Zero(bins,512);
-	for (int k = 0; k < bins; k++)
-	{
-		double freq = minFreqOffset + k*100;
-		for (int j = 0; j < 512; j++)
-		{
-			m_template(k,j) = conj(exp((std::complex<float>)(2i*M_PI*freq*j/50e3))*baseBand(j));
-		}
-	}
-}
-
 int sprite_correlator_cc::work (int noutput_items,
 			gr_vector_const_void_star &input_items,
 			gr_vector_void_star &output_items)
@@ -165,7 +147,14 @@ int sprite_correlator_cc::work (int noutput_items,
 		//wrap the input vector in an Eigen matrix
 		Map<const Vector512c> invec(&in[k]);
 		
-		out[k] = (m_template*invec).cwiseAbs().maxCoeff();
+		//Pointwise multiply by baseband template
+		m_temp1 = invec.cwiseProduct(m_template);
+		
+		//Take FFT
+		m_temp2 = m_fft.fwd(m_temp1);
+		
+		//Output is largest value in FFT
+		out[k] = m_temp2.cwiseAbs().maxCoeff();
 	}
 
 	// Tell runtime system how many output items we produced.
