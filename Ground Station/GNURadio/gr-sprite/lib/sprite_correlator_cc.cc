@@ -22,12 +22,13 @@
 #include "config.h"
 #endif
 
+#include <iostream>
 #include <gr_io_signature.h>
 #include <sprite_correlator_cc.h>
 #include <cmath>
 #include <Eigen/Dense>
 #include <unsupported/Eigen/FFT>
-#define EIGEN_FFTW_DEFAULT //Use FFTW instead of built in Eigen FFT
+//#define EIGEN_FFTW_DEFAULT //Use FFTW instead of built in Eigen FFT
 
 using namespace Eigen;
 
@@ -42,10 +43,16 @@ sprite_correlator_cc::sprite_correlator_cc (int prn_id)
 	: gr_sync_block ("correlator_cc",
 		gr_make_io_signature (1, 1, sizeof (gr_complex)),
 		gr_make_io_signature (1, 1, sizeof (gr_complex)))
-{
+{	
+	//Tell Eigen than GNURadio is multithreaded
+	Eigen::initParallel();
+	
 	set_history(512);
 	generate_prn(prn_id);
+	
 	m_template = (cc430_modulator(m_prn)).conjugate();
+	
+	//Using an unscaled FFT improves performance
 	m_fft.SetFlag(m_fft.Unscaled);
 }
 
@@ -122,7 +129,7 @@ Vector512c sprite_correlator_cc::cc430_modulator(int* prnBits)
 	
 	for(int k = 2; k < 512; k+=2)
 	{
-		qBB(k) = diffs(k)*iBB(k-1);
+		qBB(k) = diffs(k)*qBB(k-1);
 		qBB(k+1) = qBB(k);
 	}
 	
@@ -144,17 +151,22 @@ int sprite_correlator_cc::work (int noutput_items,
 	// Do <+signal processing+>
 	for(int k = 0; k < noutput_items; k++) {
 		
-		//wrap the input vector in an Eigen matrix
-		Map<const Vector512c> invec(&in[k]);
+		//wrap the input vector in an Eigen matrix. Start 512 samples in the past.
+		//Map<const Vector512c> invec(&in[k-511]);
+		for (int j = 0; j < 512; j++)
+		{
+			m_buffer[j] = in[j+k-511];
+		}
 		
 		//Pointwise multiply by baseband template
-		m_temp1 = invec.cwiseProduct(m_template);
+		//m_temp1 = invec.cwiseProduct(m_template);
+		m_temp1 = m_buffer.cwiseProduct(m_template);
 		
 		//Take FFT
 		m_temp2 = m_fft.fwd(m_temp1);
 		
 		//Output is largest value in FFT
-		out[k] = m_temp2.cwiseAbs().maxCoeff();
+		out[k] = sqrt(m_temp2.cwiseAbs2().maxCoeff());
 	}
 
 	// Tell runtime system how many output items we produced.

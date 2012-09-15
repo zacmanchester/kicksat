@@ -1,79 +1,16 @@
-/* -*- c++ -*- */
-/* 
- * Copyright 2012 <+YOU OR YOUR COMPANY+>.
- * 
- * This is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3, or (at your option)
- * any later version.
- * 
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this software; see the file COPYING.  If not, write to
- * the Free Software Foundation, Inc., 51 Franklin Street,
- * Boston, MA 02110-1301, USA.
- */
-
-#ifndef INCLUDED_SPRITE_CORRELATOR_CC_H
-#define INCLUDED_SPRITE_CORRELATOR_CC_H
-
-#include <sprite_api.h>
-#include <gr_sync_block.h>
+#include <iostream>
+#include <cmath>
+#include <complex>
 #include <Eigen/Dense>
 #include <unsupported/Eigen/FFT>
-//#define EIGEN_DONT_VECTORIZE
-//#define EIGEN_DONT_ALIGN
 
-class sprite_correlator_cc;
-typedef boost::shared_ptr<sprite_correlator_cc> sprite_correlator_cc_sptr;
+//using namespace Eigen;
+//using namespace std;
 
-//Eigen vector/matrix typedefs
 typedef Eigen::Matrix<float, 512, 1> Vector512f;
-typedef Eigen::Matrix<gr_complex, 512, 1> Vector512c;
-typedef Eigen::Matrix<gr_complex, Eigen::Dynamic, 512> Matrix512c;
+typedef Eigen::Matrix< std::complex<float>, 512, 1> Vector512c;
 
-SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
-
-/*!
- * \brief <+description+>
- *
- */
-class SPRITE_API sprite_correlator_cc : public gr_sync_block
-{
-	private:
-	
-		friend SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
-
-		sprite_correlator_cc (int prn_id);
-		
-		int m_prn[512];
-		void generate_prn(int prn_id);
-		
-		Vector512c m_template;
-		Vector512c cc430_modulator(int* prnBits);
-		
-		Vector512c m_buffer;
-		Vector512c m_temp1;
-		Vector512c m_temp2;
-		Eigen::FFT<float> m_fft;
-		
-		static int mseq1[512];
-		static int mseq2[512];
-
-	public:
-		~sprite_correlator_cc ();
-
-
-		int work (int noutput_items,
-			gr_vector_const_void_star &input_items,
-			gr_vector_void_star &output_items);
-};
-
-int sprite_correlator_cc::mseq1[] = {
+int mseq1[] = {
 	1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,1,0,
 	1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0,1,1,1,0,1,0,0,1,0,0,1,1,1,1,
 	0,1,0,1,1,1,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1,1,0,0,1,1,1,0,0,0,0,
@@ -92,7 +29,7 @@ int sprite_correlator_cc::mseq1[] = {
 	0,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,0,0,0,1,0,1,1,0,1,0,1,1,1,1,0
 };
 		
-int sprite_correlator_cc::mseq2[] = {
+int mseq2[] = {
 	1,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,0,1,0,0,1,0,0,
 	1,1,1,1,1,0,0,1,0,1,1,1,1,1,0,1,0,0,0,0,0,0,1,0,1,1,0,0,0,1,0,0,
 	1,1,0,0,1,1,1,0,1,1,1,1,0,1,0,1,1,0,1,1,0,1,1,1,0,1,0,1,0,1,1,0,
@@ -111,5 +48,114 @@ int sprite_correlator_cc::mseq2[] = {
 	1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,1,0,1,1,1,1,1,0,0,0,0,0
 };
 
-#endif /* INCLUDED_SPRITE_CORRELATOR_CC_H */
+int m_prn[512];
+Vector512c m_template;
+Eigen::FFT<float> m_fft;
 
+void generate_prn(int prn_id)
+{
+	if(prn_id == -2)
+	{	
+		//Deep copy M-sequence
+		for (int k = 0; k < 512; k++)
+		{
+			m_prn[k] = mseq1[k];
+		}
+	}
+	else if(prn_id == -1)
+	{	
+		//Deep copy M-sequence
+		for (int k = 0; k < 512; k++)
+		{
+			m_prn[k] = mseq2[k];
+		}
+	}
+	else //if(prn_id >= 0 && prn_id < 512)
+	{	
+		//Generate Gold Codes by xor'ing 2 M-sequences in different phases
+		for (int k = 0; k < 512-prn_id; k++)
+		{
+			m_prn[k] = mseq1[k] ^ mseq2[k+prn_id];
+		}
+		for (int k = 512-prn_id; k < 512; k++)
+		{
+			m_prn[k] = mseq1[k] ^ mseq2[k-512+prn_id];
+		}
+	}
+}
+
+Vector512c cc430_modulator(int* prnBits)
+{
+	Vector512f diffs;
+	Vector512f iBB;
+	Vector512f qBB;
+	Vector512c baseBand;
+	
+	//Differentially encode with +/-1 values
+	diffs(0) = -2*prnBits[0] + 1;
+	for (int k = 1; k < 512; k++)
+	{
+		char diff = prnBits[k]-prnBits[k-1];
+		if(diff == 0)
+		{
+			diffs(k) = 1;
+		}
+		else
+		{
+			diffs(k) = -1;
+		}
+	}
+	
+	//Initialize with offset between I and Q
+	iBB(0) = 1;
+	qBB(0) = diffs(0);
+	qBB(1) = diffs(0);
+	
+	for(int k = 1; k < 510; k+=2)
+	{
+		iBB(k) = diffs(k)*iBB(k-1);
+		iBB(k+1) = iBB(k);
+	}
+	iBB(511) = diffs(511)*iBB(510);
+	
+	for(int k = 2; k < 512; k+=2)
+	{
+		qBB(k) = diffs(k)*iBB(k-1);
+		qBB(k+1) = qBB(k);
+	}
+	
+	for(int k = 0; k < 512; k++)
+	{
+		baseBand(k) = iBB(k)*cos(M_PI/2*k) + 1i*qBB(k)*sin(M_PI/2*k);
+	}
+	
+	return baseBand;
+}
+
+int main() {
+
+	generate_prn(-2);
+	
+	m_template = (cc430_modulator(m_prn)).conjugate();
+	
+	//Using an unscaled FFT improves performance
+	m_fft.SetFlag(m_fft.Unscaled);
+	
+	Vector512c rf;
+	
+	for (int k = 0; k < 512; k++)
+	{
+		std::complex<float> ex = std::exp((std::complex<float>)(5.3i*M_PI/512*k));
+		rf[k] = std::conj(m_template[k])*ex;
+	}
+	
+	Vector512c temp1 = rf.cwiseProduct(m_template);
+	
+	Vector512c temp2 = m_fft.fwd(temp1);
+	
+	std::cout << 1%512;
+	std::cout << "\n";
+	std::cout << "\n";
+	std::cout << 512%512;
+
+}
