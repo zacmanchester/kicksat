@@ -23,18 +23,10 @@
 
 #include <sprite_api.h>
 #include <gr_sync_block.h>
-#include <Eigen/Dense>
-#include <unsupported/Eigen/FFT>
-//#define EIGEN_DONT_VECTORIZE
-//#define EIGEN_DONT_ALIGN
+#include <gri_fft.h>
 
 class sprite_correlator_cc;
 typedef boost::shared_ptr<sprite_correlator_cc> sprite_correlator_cc_sptr;
-
-//Eigen vector/matrix typedefs
-typedef Eigen::Matrix<float, 512, 1> Vector512f;
-typedef Eigen::Matrix<gr_complex, 512, 1> Vector512c;
-typedef Eigen::Matrix<gr_complex, Eigen::Dynamic, 512> Matrix512c;
 
 SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
 
@@ -48,18 +40,21 @@ class SPRITE_API sprite_correlator_cc : public gr_sync_block
 	
 		friend SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
 
-		sprite_correlator_cc (int prn_id);
+		sprite_correlator_cc(int prn_id);
 		
 		int m_prn[512];
 		void generate_prn(int prn_id);
 		
-		Vector512c m_template;
-		Vector512c cc430_modulator(int* prnBits);
+		gr_complex m_template[512];
+		void cc430_modulator(int* prnBits, gr_complex* baseBand);
 		
-		Vector512c m_buffer;
-		Vector512c m_temp1;
-		Vector512c m_temp2;
-		Eigen::FFT<float> m_fft;
+		float m_buffer_real1[512];
+		float m_buffer_real2[512];
+		float m_buffer_real3[512];
+		
+		gr_complex* m_fft_buffer_in;
+		gr_complex* m_fft_buffer_out;
+		gri_fft_complex* m_fft;
 		
 		static int mseq1[512];
 		static int mseq2[512];

@@ -26,11 +26,10 @@
 #include <gr_io_signature.h>
 #include <sprite_correlator_cc.h>
 #include <cmath>
-#include <Eigen/Dense>
-#include <unsupported/Eigen/FFT>
-//#define EIGEN_FFTW_DEFAULT //Use FFTW instead of built in Eigen FFT
+#include <complex>
+#include <gri_fft.h>
 
-using namespace Eigen;
+using namespace std;
 
 sprite_correlator_cc_sptr
 sprite_make_correlator_cc (int prn_id)
@@ -44,16 +43,20 @@ sprite_correlator_cc::sprite_correlator_cc (int prn_id)
 		gr_make_io_signature (1, 1, sizeof (gr_complex)),
 		gr_make_io_signature (1, 1, sizeof (gr_complex)))
 {	
-	//Tell Eigen than GNURadio is multithreaded
-	Eigen::initParallel();
-	
 	set_history(512);
+	
 	generate_prn(prn_id);
 	
-	m_template = (cc430_modulator(m_prn)).conjugate();
+	cc430_modulator(m_prn, m_template);
+	for (int k = 0; k < 512; k++)
+	{
+		m_template[k] = conj(m_template[k]);
+	}
 	
-	//Using an unscaled FFT improves performance
-	m_fft.SetFlag(m_fft.Unscaled);
+	m_fft = new gri_fft_complex(512, true, 1);
+	m_fft_buffer_in = m_fft->get_inbuf();
+	m_fft_buffer_out = m_fft->get_outbuf();
+	
 }
 
 
@@ -93,52 +96,49 @@ void sprite_correlator_cc::generate_prn(int prn_id)
 	}
 }
 
-Vector512c sprite_correlator_cc::cc430_modulator(int* prnBits)
+void sprite_correlator_cc::cc430_modulator(int* prnBits, gr_complex* baseBand)
 {
-	Vector512f diffs;
-	Vector512f iBB;
-	Vector512f qBB;
-	Vector512c baseBand;
+	float* diffs = m_buffer_real1;
+	float* iBB = m_buffer_real2;
+	float* qBB = m_buffer_real3;
 	
 	//Differentially encode with +/-1 values
-	diffs(0) = -2*prnBits[0] + 1;
+	diffs[0] = -2*prnBits[0] + 1;
 	for (int k = 1; k < 512; k++)
 	{
 		char diff = prnBits[k]-prnBits[k-1];
 		if(diff == 0)
 		{
-			diffs(k) = 1;
+			diffs[k] = 1;
 		}
 		else
 		{
-			diffs(k) = -1;
+			diffs[k] = -1;
 		}
 	}
 	
 	//Initialize with offset between I and Q
-	iBB(0) = 1;
-	qBB(0) = diffs(0);
-	qBB(1) = diffs(0);
+	iBB[0] = 1;
+	qBB[0] = diffs[0];
+	qBB[1] = diffs[0];
 	
 	for(int k = 1; k < 510; k+=2)
 	{
-		iBB(k) = diffs(k)*iBB(k-1);
-		iBB(k+1) = iBB(k);
+		iBB[k] = diffs[k]*iBB[k-1];
+		iBB[k+1] = iBB[k];
 	}
-	iBB(511) = diffs(511)*iBB(510);
+	iBB[511] = diffs[511]*iBB[510];
 	
 	for(int k = 2; k < 512; k+=2)
 	{
-		qBB(k) = diffs(k)*qBB(k-1);
-		qBB(k+1) = qBB(k);
+		qBB[k] = diffs[k]*qBB[k-1];
+		qBB[k+1] = qBB[k];
 	}
 	
 	for(int k = 0; k < 512; k++)
 	{
-		baseBand(k) = iBB(k)*cos(M_PI/2*k) + 1i*qBB(k)*sin(M_PI/2*k);
+		baseBand[k] = iBB[k]*cos(M_PI/2*k) + 1i*qBB[k]*sin(M_PI/2*k);
 	}
-	
-	return baseBand;
 }
 
 int sprite_correlator_cc::work (int noutput_items,
@@ -147,26 +147,35 @@ int sprite_correlator_cc::work (int noutput_items,
 {
 	const gr_complex *in = (const gr_complex *) input_items[0];
 	gr_complex *out = (gr_complex *) output_items[0];
-
+	
+	gr_complex* fft_in = m_fft_buffer_in;
+	gr_complex* fft_out = m_fft_buffer_out;
+	
 	// Do <+signal processing+>
 	for(int k = 0; k < noutput_items; k++) {
 		
-		//wrap the input vector in an Eigen matrix. Start 512 samples in the past.
-		//Map<const Vector512c> invec(&in[k-511]);
+		//Pointwise multiply by baseband template and copy to fft input
 		for (int j = 0; j < 512; j++)
 		{
-			m_buffer[j] = in[j+k-511];
+			fft_in[j] = m_template[j]*in[j+k-511];
 		}
 		
-		//Pointwise multiply by baseband template
-		//m_temp1 = invec.cwiseProduct(m_template);
-		m_temp1 = m_buffer.cwiseProduct(m_template);
-		
 		//Take FFT
-		m_temp2 = m_fft.fwd(m_temp1);
+		m_fft->execute();
 		
-		//Output is largest value in FFT
-		out[k] = sqrt(m_temp2.cwiseAbs2().maxCoeff());
+		//Find largest value in FFT
+		float mag2 = real(fft_out[0]*conj(fft_out[0]));
+		float max = mag2;
+		for (int j = 1; j < 512; j++)
+		{
+			mag2 = real(fft_out[j]*conj(fft_out[j]));
+			if (mag2 > max)
+			{
+				max = mag2;
+			}
+		}
+		
+		out[k] = sqrt(max);
 	}
 
 	// Tell runtime system how many output items we produced.
