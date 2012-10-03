@@ -2,7 +2,7 @@
 ##################################################
 # Gnuradio Python Flow Graph
 # Title: Top Block
-# Generated: Sun Sep 16 14:29:23 2012
+# Generated: Mon Oct  1 13:21:47 2012
 ##################################################
 
 from gnuradio import blks2
@@ -66,7 +66,7 @@ class top_block(grc_wxgui.top_block_gui):
 		
 		self.rtl2832_source_0.set_sample_rate(1e6)
 		
-		self.rtl2832_source_0.set_frequency(902e6)
+		self.rtl2832_source_0.set_frequency(437.5e6)
 		
 		
 		

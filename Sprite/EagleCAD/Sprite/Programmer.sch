@@ -2324,6 +2324,17 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pin name="4" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="5" x="7.62" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
+<symbol name="3.3V">
+<wire x1="0.762" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-0.762" y2="1.27" width="0.254" layer="94"/>
+<text x="-1.016" y="3.556" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="3.3V" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
+<symbol name="GND">
+<wire x1="-1.905" y1="0" x2="1.905" y2="0" width="0.254" layer="94"/>
+<text x="-2.54" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="M03" prefix="JP" uservalue="yes">
@@ -2546,6 +2557,32 @@ Standard 5-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </device>
 </devices>
 </deviceset>
+<deviceset name="3.3V" prefix="P+">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="3.3V" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="GND" prefix="GND">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="GND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -2563,21 +2600,112 @@ Standard 5-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <part name="JP2" library="SparkFun" deviceset="M03" device="LOCK"/>
 <part name="JP3" library="SparkFun" deviceset="M05" device="LOCK"/>
 <part name="JP4" library="SparkFun" deviceset="M05" device="LOCK"/>
+<part name="VCC" library="SparkFun" deviceset="3.3V" device=""/>
+<part name="GND1" library="SparkFun" deviceset="GND" device=""/>
+<part name="JP5" library="SparkFun" deviceset="M03" device="LOCK"/>
+<part name="GND2" library="SparkFun" deviceset="GND" device=""/>
+<part name="VCC1" library="SparkFun" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="U$1" gate="G$1" x="73.66" y="48.26"/>
+<instance part="U$1" gate="G$1" x="66.04" y="60.96"/>
 <instance part="JP1" gate="G$1" x="121.92" y="45.72"/>
 <instance part="JP2" gate="G$1" x="116.84" y="45.72" rot="R180"/>
 <instance part="JP3" gate="G$1" x="129.54" y="86.36" rot="R90"/>
 <instance part="JP4" gate="G$1" x="129.54" y="81.28" rot="R270"/>
+<instance part="VCC" gate="G$1" x="96.52" y="48.26"/>
+<instance part="GND1" gate="1" x="142.24" y="53.34"/>
+<instance part="JP5" gate="G$1" x="187.96" y="60.96" rot="R180"/>
+<instance part="GND2" gate="1" x="175.26" y="55.88"/>
+<instance part="VCC1" gate="G$1" x="134.62" y="99.06"/>
 </instances>
 <busses>
 </busses>
 <nets>
+<net name="3.3V" class="0">
+<segment>
+<pinref part="JP2" gate="G$1" pin="1"/>
+<pinref part="VCC" gate="G$1" pin="3.3V"/>
+<wire x1="109.22" y1="48.26" x2="96.52" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP3" gate="G$1" pin="1"/>
+<wire x1="134.62" y1="93.98" x2="134.62" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="VCC1" gate="G$1" pin="3.3V"/>
+</segment>
+</net>
+<net name="RST" class="0">
+<segment>
+<pinref part="JP2" gate="G$1" pin="2"/>
+<wire x1="109.22" y1="45.72" x2="96.52" y2="45.72" width="0.1524" layer="91"/>
+<label x="96.52" y="45.72" size="1.778" layer="95" rot="R180"/>
+</segment>
+<segment>
+<pinref part="JP3" gate="G$1" pin="3"/>
+<wire x1="129.54" y1="93.98" x2="129.54" y2="99.06" width="0.1524" layer="91"/>
+<label x="129.54" y="99.06" size="1.778" layer="95" rot="R90"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="JP1" gate="G$1" pin="3"/>
+<wire x1="129.54" y1="48.26" x2="132.08" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="48.26" x2="132.08" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<wire x1="132.08" y1="58.42" x2="142.24" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="58.42" x2="142.24" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP5" gate="G$1" pin="2"/>
+<wire x1="180.34" y1="60.96" x2="175.26" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="60.96" x2="175.26" y2="63.5" width="0.1524" layer="91"/>
+<pinref part="JP5" gate="G$1" pin="1"/>
+<wire x1="180.34" y1="63.5" x2="175.26" y2="63.5" width="0.1524" layer="91"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="175.26" y1="60.96" x2="175.26" y2="58.42" width="0.1524" layer="91"/>
+<junction x="175.26" y="60.96"/>
+<junction x="175.26" y="63.5"/>
+</segment>
+</net>
+<net name="TEST" class="0">
+<segment>
+<pinref part="JP1" gate="G$1" pin="2"/>
+<wire x1="129.54" y1="45.72" x2="142.24" y2="45.72" width="0.1524" layer="91"/>
+<label x="142.24" y="45.72" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP3" gate="G$1" pin="2"/>
+<wire x1="132.08" y1="93.98" x2="132.08" y2="99.06" width="0.1524" layer="91"/>
+<label x="132.08" y="99.06" size="1.778" layer="95" rot="R90"/>
+</segment>
+</net>
+<net name="TXD" class="0">
+<segment>
+<pinref part="JP3" gate="G$1" pin="4"/>
+<wire x1="127" y1="93.98" x2="127" y2="99.06" width="0.1524" layer="91"/>
+<label x="127" y="99.06" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="JP1" gate="G$1" pin="1"/>
+<wire x1="129.54" y1="43.18" x2="142.24" y2="43.18" width="0.1524" layer="91"/>
+<label x="142.24" y="43.18" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="RXD" class="0">
+<segment>
+<pinref part="JP4" gate="G$1" pin="1"/>
+<wire x1="124.46" y1="73.66" x2="124.46" y2="68.58" width="0.1524" layer="91"/>
+<label x="124.46" y="68.58" size="1.778" layer="95" rot="R270"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="3"/>
+<wire x1="109.22" y1="43.18" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
+<label x="96.52" y="43.18" size="1.778" layer="95" rot="R180"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>

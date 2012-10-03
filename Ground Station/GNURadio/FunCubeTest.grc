@@ -1,65 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Thu Sep 27 23:16:19 2012</timestamp>
-  <block>
-    <key>options</key>
-    <param>
-      <key>id</key>
-      <value>top_block</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value></value>
-    </param>
-    <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value></value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>wx_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>realtime_scheduling</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(10, 10)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
+  <timestamp>Thu Sep 27 23:13:32 2012</timestamp>
   <block>
     <key>variable</key>
     <param>
@@ -112,45 +53,6 @@
     <param>
       <key>_coordinate</key>
       <value>(620, 368)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blks2_rational_resampler_xxx</key>
-    <param>
-      <key>id</key>
-      <value>blks2_rational_resampler_xxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>20</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>[]</value>
-    </param>
-    <param>
-      <key>fractional_bw</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(331, 132)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -331,98 +233,152 @@
     </param>
   </block>
   <block>
-    <key>rtl2832_source</key>
+    <key>options</key>
     <param>
       <key>id</key>
-      <value>rtl2832_source_0</value>
+      <value>top_block</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>verbose</key>
+      <key>title</key>
+      <value></value>
+    </param>
+    <param>
+      <key>author</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value></value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value>1280, 1024</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>wx_gui</value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>Custom</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(10, 10)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>fcd_source_c</key>
+    <param>
+      <key>id</key>
+      <value>fcd_source_c_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>device_name</key>
+      <value>hw:1</value>
+    </param>
+    <param>
+      <key>freq</key>
+      <value>437500000</value>
+    </param>
+    <param>
+      <key>lna</key>
+      <value>20.0</value>
+    </param>
+    <param>
+      <key>mixer</key>
+      <value>+12</value>
+    </param>
+    <param>
+      <key>ppm</key>
+      <value>-120</value>
+    </param>
+    <param>
+      <key>dci</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>dcq</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>iq_phase</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>iq_gain</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(107, 89)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blks2_rational_resampler_xxx</key>
+    <param>
+      <key>id</key>
+      <value>blks2_rational_resampler_xxx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>ccc</value>
     </param>
     <param>
-      <key>sample_rate</key>
-      <value>1e6</value>
+      <key>decim</key>
+      <value>48</value>
     </param>
     <param>
-      <key>frequency</key>
-      <value>437.5e6</value>
+      <key>interp</key>
+      <value>25</value>
     </param>
     <param>
-      <key>bandwidth</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>relative_gain</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>.8</value>
-    </param>
-    <param>
-      <key>gain_mode</key>
-      <value></value>
-    </param>
-    <param>
-      <key>auto_gain_mode</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>usb_vid</key>
-      <value>0x0</value>
-    </param>
-    <param>
-      <key>usb_pid</key>
-      <value>0x0</value>
-    </param>
-    <param>
-      <key>tuner_name</key>
-      <value></value>
-    </param>
-    <param>
-      <key>read_length</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>xfer_timeout</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>use_buffer</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>buf_mul</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>buf_level</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>fir_coeffs</key>
+      <key>taps</key>
       <value>[]</value>
     </param>
     <param>
-      <key>xtal_freq</key>
+      <key>fractional_bw</key>
       <value>0</value>
     </param>
     <param>
-      <key>status_out</key>
-      <value>False</value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(104, 97)</value>
+      <value>(343, 119)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -442,12 +398,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>rtl2832_source_0</source_block_id>
-    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
     <sink_block_id>sprite_correlator_cc_0</sink_block_id>
     <source_key>0</source_key>
@@ -456,6 +406,12 @@
   <connection>
     <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
     <sink_block_id>wxgui_scopesink2_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fcd_source_c_0</source_block_id>
+    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

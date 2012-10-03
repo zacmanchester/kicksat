@@ -1033,7 +1033,7 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="1.55" y1="18.95" x2="17.5" y2="18.95" width="0.4064" layer="1"/>
 <wire x1="17.5" y1="18.95" x2="17.5" y2="25" width="0.4064" layer="1"/>
 </signal>
-<signal name="N$12">
+<signal name="RX">
 <contactref element="JP3" pad="1"/>
 <contactref element="U1" pad="11"/>
 <wire x1="16" y1="5.15" x2="14.95" y2="5.15" width="0.254" layer="1"/>
@@ -1043,7 +1043,7 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="17.85" y1="8.6" x2="30.05" y2="8.6" width="0.254" layer="16"/>
 <wire x1="30.05" y1="8.6" x2="30.35" y2="8.9" width="0.254" layer="16"/>
 </signal>
-<signal name="N$13">
+<signal name="TX">
 <contactref element="JP3" pad="2"/>
 <contactref element="U1" pad="12"/>
 <wire x1="16" y1="4.65" x2="14.95" y2="4.65" width="0.254" layer="1"/>
@@ -1058,9 +1058,6 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="32.89" y1="8.89" x2="31.3" y2="7.5" width="0.254" layer="16"/>
 </signal>
 </signals>
-<errors>
-<approved hash="19,1,205f7a317b9721f9"/>
-</errors>
 </board>
 </drawing>
 </eagle>
