@@ -16,7 +16,7 @@ UsedLibrary="lbr/TI_launchpad.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="258 91 857 490"
+Loc="223 129 822 528"
 State=2
 Number=0
 

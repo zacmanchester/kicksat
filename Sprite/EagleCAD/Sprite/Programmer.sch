@@ -2682,7 +2682,7 @@ Standard 5-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <label x="132.08" y="99.06" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
-<net name="TXD" class="0">
+<net name="RXD" class="0">
 <segment>
 <pinref part="JP3" gate="G$1" pin="4"/>
 <wire x1="127" y1="93.98" x2="127" y2="99.06" width="0.1524" layer="91"/>
@@ -2694,7 +2694,7 @@ Standard 5-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <label x="142.24" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="RXD" class="0">
+<net name="TXD" class="0">
 <segment>
 <pinref part="JP4" gate="G$1" pin="1"/>
 <wire x1="124.46" y1="73.66" x2="124.46" y2="68.58" width="0.1524" layer="91"/>

@@ -2894,14 +2894,14 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="360.68" y1="106.68" x2="360.68" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="RX" class="0">
+<net name="TXD" class="0">
 <segment>
 <pinref part="JP3" gate="G$1" pin="1"/>
 <pinref part="U1" gate="G$1" pin="11"/>
 <wire x1="121.92" y1="88.9" x2="129.54" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="TX" class="0">
+<net name="RXD" class="0">
 <segment>
 <pinref part="JP3" gate="G$1" pin="2"/>
 <pinref part="U1" gate="G$1" pin="12"/>
