@@ -1,0 +1,32 @@
+Screaming Circuits SMD component position file.
+
+Centroid Data for pc board: "Replica.brd" as of: 10/22/12 11:50 AM
+Measurements are in inches. Comma delimited
+Only surface mount components included
+
+RefDes,Layer,LocationX,LocationY,Rotation
+C1,Top,0.608,0.059,180
+C2,Top,0.821,0.059,0
+C3,Top,0.586,0.531,270
+C4,Top,0.568,0.231,270
+C5,Top,0.744,0.510,0
+C6,Top,0.974,0.079,270
+C7,Top,1.061,0.079,270
+L1,Top,1.033,0.317,180
+LED1,Top,0.172,0.546,300
+LED2,Top,0.455,0.394,270
+LED3,Top,0.329,0.363,270
+LED4,Top,0.429,0.314,270
+LED5,Top,0.369,0.257,270
+LED6,Top,0.385,0.182,180
+R1,Top,1.083,0.498,270
+R2,Top,0.872,0.510,0
+R3,Top,0.407,0.571,0
+R4,Top,0.044,0.366,270
+R5,Top,0.044,0.249,270
+R6,Top,0.044,0.127,270
+R7,Top,0.103,0.041,0
+R8,Top,0.220,0.041,0
+S1,Top,0.063,0.679,0
+U1,Top,0.762,0.291,0
+X1,Top,0.715,0.061,90

@@ -2,7 +2,7 @@
 ##################################################
 # Gnuradio Python Flow Graph
 # Title: Top Block
-# Generated: Mon Oct  1 13:21:47 2012
+# Generated: Tue Oct 23 17:51:23 2012
 ##################################################
 
 from gnuradio import blks2
@@ -72,7 +72,7 @@ class top_block(grc_wxgui.top_block_gui):
 		
 		self.rtl2832_source_0.set_auto_gain_mode(False)
 		self.rtl2832_source_0.set_relative_gain(True)
-		self.rtl2832_source_0.set_gain(.8)
+		self.rtl2832_source_0.set_gain(.9)
 		  
 		self.blks2_rational_resampler_xxx_0 = blks2.rational_resampler_ccc(
 			interpolation=1,
