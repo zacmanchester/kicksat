@@ -17,6 +17,10 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 
+########################################################################
+# Install public header files
+########################################################################
 install(FILES
-    sprite_correlator_cc.xml DESTINATION share/gnuradio/grc/blocks
+    sprite_api.h
+    sprite_correlator_cf.h DESTINATION include/sprite
 )

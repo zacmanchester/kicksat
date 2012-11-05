@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <block>
   <name>Sprite Correlator</name>
-  <key>sprite_correlator_cc</key>
+  <key>sprite_correlator_cf</key>
   <category>Sprite</category>
   <import>import sprite</import>
-  <make>sprite.correlator_cc($prn_id)</make>
+  <make>sprite.correlator_cf($prn_id)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
        * key (makes the value accessible as $keyname, e.g. in the make node)
        * type -->
   <param>
-    <name>PRN</name>
+    <name>PRN ID</name>
     <key>prn_id</key>
     <type>int</type>
   </param>
@@ -33,6 +33,6 @@
        * optional (set to 1 for optional inputs) -->
   <source>
     <name>out</name>
-    <type>complex</type>
+    <type>float</type>
   </source>
 </block>

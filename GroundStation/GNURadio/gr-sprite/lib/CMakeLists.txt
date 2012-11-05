@@ -20,7 +20,7 @@
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
 
-add_library(gnuradio-sprite SHARED sprite_correlator_cc.cc )
+add_library(gnuradio-sprite SHARED sprite_correlator_cf.cc )
 target_link_libraries(gnuradio-sprite ${Boost_LIBRARIES} ${GRUEL_LIBRARIES} ${GNURADIO_CORE_LIBRARIES})
 set_target_properties(gnuradio-sprite PROPERTIES DEFINE_SYMBOL "gnuradio_sprite_EXPORTS")
 

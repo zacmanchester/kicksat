@@ -9,9 +9,9 @@
 
 
 %{
-#include "sprite_correlator_cc.h"
+#include "sprite_correlator_cf.h"
 %}
 
 
-GR_SWIG_BLOCK_MAGIC(sprite,correlator_cc);
-%include "sprite_correlator_cc.h"
+GR_SWIG_BLOCK_MAGIC(sprite,correlator_cf);
+%include "sprite_correlator_cf.h"

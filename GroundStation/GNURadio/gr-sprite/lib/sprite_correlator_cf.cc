@@ -22,27 +22,26 @@
 #include "config.h"
 #endif
 
-#include <iostream>
 #include <gr_io_signature.h>
-#include <sprite_correlator_cc.h>
+#include <sprite_correlator_cf.h>
 #include <cmath>
 #include <complex>
 #include <gri_fft.h>
 
 using namespace std;
 
-sprite_correlator_cc_sptr
-sprite_make_correlator_cc (int prn_id)
+sprite_correlator_cf_sptr
+sprite_make_correlator_cf (int prn_id)
 {
-	return sprite_correlator_cc_sptr (new sprite_correlator_cc (prn_id));
+	return sprite_correlator_cf_sptr (new sprite_correlator_cf (prn_id));
 }
 
 
-sprite_correlator_cc::sprite_correlator_cc (int prn_id)
-	: gr_sync_block ("correlator_cc",
+sprite_correlator_cf::sprite_correlator_cf (int prn_id)
+	: gr_sync_block ("correlator_cf",
 		gr_make_io_signature (1, 1, sizeof (gr_complex)),
-		gr_make_io_signature (1, 1, sizeof (gr_complex)))
-{	
+		gr_make_io_signature (1, 1, sizeof (float)))
+{
 	set_history(512);
 	
 	generate_prn(prn_id);
@@ -56,15 +55,13 @@ sprite_correlator_cc::sprite_correlator_cc (int prn_id)
 	m_fft = new gri_fft_complex(512, true, 1);
 	m_fft_buffer_in = m_fft->get_inbuf();
 	m_fft_buffer_out = m_fft->get_outbuf();
-	
 }
 
-
-sprite_correlator_cc::~sprite_correlator_cc ()
+sprite_correlator_cf::~sprite_correlator_cf ()
 {
 }
 
-void sprite_correlator_cc::generate_prn(int prn_id)
+void sprite_correlator_cf::generate_prn(int prn_id)
 {
 	if(prn_id == -2)
 	{	
@@ -96,7 +93,7 @@ void sprite_correlator_cc::generate_prn(int prn_id)
 	}
 }
 
-void sprite_correlator_cc::cc430_modulator(int* prnBits, gr_complex* baseBand)
+void sprite_correlator_cf::cc430_modulator(int* prnBits, gr_complex* baseBand)
 {
 	float* diffs = m_buffer_real1;
 	float* iBB = m_buffer_real2;
@@ -141,13 +138,14 @@ void sprite_correlator_cc::cc430_modulator(int* prnBits, gr_complex* baseBand)
 	}
 }
 
-int sprite_correlator_cc::work (int noutput_items,
+int
+sprite_correlator_cf::work (int noutput_items,
 			gr_vector_const_void_star &input_items,
 			gr_vector_void_star &output_items)
 {
 	const gr_complex *in = (const gr_complex *) input_items[0];
-	gr_complex *out = (gr_complex *) output_items[0];
-	
+	float *out = (float *) output_items[0];
+
 	gr_complex* fft_in = m_fft_buffer_in;
 	gr_complex* fft_out = m_fft_buffer_out;
 	

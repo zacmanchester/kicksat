@@ -18,57 +18,55 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_SPRITE_CORRELATOR_CC_H
-#define INCLUDED_SPRITE_CORRELATOR_CC_H
+#ifndef INCLUDED_SPRITE_CORRELATOR_CF_H
+#define INCLUDED_SPRITE_CORRELATOR_CF_H
 
 #include <sprite_api.h>
 #include <gr_sync_block.h>
 #include <gri_fft.h>
 
-class sprite_correlator_cc;
-typedef boost::shared_ptr<sprite_correlator_cc> sprite_correlator_cc_sptr;
+class sprite_correlator_cf;
+typedef boost::shared_ptr<sprite_correlator_cf> sprite_correlator_cf_sptr;
 
-SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
+SPRITE_API sprite_correlator_cf_sptr sprite_make_correlator_cf (int prn_id);
 
 /*!
  * \brief <+description+>
  *
  */
-class SPRITE_API sprite_correlator_cc : public gr_sync_block
+class SPRITE_API sprite_correlator_cf : public gr_sync_block
 {
-	private:
+	friend SPRITE_API sprite_correlator_cf_sptr sprite_make_correlator_cf (int prn_id);
+
+	sprite_correlator_cf (int prn_id);
 	
-		friend SPRITE_API sprite_correlator_cc_sptr sprite_make_correlator_cc (int prn_id);
+	int m_prn[512];
+	void generate_prn(int prn_id);
+		
+	gr_complex m_template[512];
+	void cc430_modulator(int* prnBits, gr_complex* baseBand);
+		
+	float m_buffer_real1[512];
+	float m_buffer_real2[512];
+	float m_buffer_real3[512];
+		
+	gr_complex* m_fft_buffer_in;
+	gr_complex* m_fft_buffer_out;
+		
+	gri_fft_complex* m_fft;
+		
+	static int mseq1[512];
+	static int mseq2[512];
 
-		sprite_correlator_cc(int prn_id);
-		
-		int m_prn[512];
-		void generate_prn(int prn_id);
-		
-		gr_complex m_template[512];
-		void cc430_modulator(int* prnBits, gr_complex* baseBand);
-		
-		float m_buffer_real1[512];
-		float m_buffer_real2[512];
-		float m_buffer_real3[512];
-		
-		gr_complex* m_fft_buffer_in;
-		gr_complex* m_fft_buffer_out;
-		gri_fft_complex* m_fft;
-		
-		static int mseq1[512];
-		static int mseq2[512];
+ public:
+	~sprite_correlator_cf ();
 
-	public:
-		~sprite_correlator_cc ();
-
-
-		int work (int noutput_items,
-			gr_vector_const_void_star &input_items,
-			gr_vector_void_star &output_items);
+	int work (int noutput_items,
+		gr_vector_const_void_star &input_items,
+		gr_vector_void_star &output_items);
 };
 
-int sprite_correlator_cc::mseq1[] = {
+int sprite_correlator_cf::mseq1[] = {
 	1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,1,0,
 	1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0,1,1,1,0,1,0,0,1,0,0,1,1,1,1,
 	0,1,0,1,1,1,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1,1,0,0,1,1,1,0,0,0,0,
@@ -87,7 +85,7 @@ int sprite_correlator_cc::mseq1[] = {
 	0,1,0,1,1,0,1,1,0,1,1,1,0,1,1,0,0,0,0,0,1,0,1,1,0,1,0,1,1,1,1,0
 };
 		
-int sprite_correlator_cc::mseq2[] = {
+int sprite_correlator_cf::mseq2[] = {
 	1,0,1,0,1,0,1,0,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,0,1,0,0,1,0,0,
 	1,1,1,1,1,0,0,1,0,1,1,1,1,1,0,1,0,0,0,0,0,0,1,0,1,1,0,0,0,1,0,0,
 	1,1,0,0,1,1,1,0,1,1,1,1,0,1,0,1,1,0,1,1,0,1,1,1,0,1,0,1,0,1,1,0,
@@ -106,5 +104,5 @@ int sprite_correlator_cc::mseq2[] = {
 	1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,1,0,1,1,1,1,1,0,0,0,0,0
 };
 
-#endif /* INCLUDED_SPRITE_CORRELATOR_CC_H */
+#endif /* INCLUDED_SPRITE_CORRELATOR_CF_H */
 

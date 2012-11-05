@@ -2,7 +2,7 @@
 ##################################################
 # Gnuradio Python Flow Graph
 # Title: Top Block
-# Generated: Tue Oct 23 17:51:23 2012
+# Generated: Mon Nov  5 15:39:58 2012
 ##################################################
 
 from gnuradio import blks2
@@ -32,12 +32,12 @@ class top_block(grc_wxgui.top_block_gui):
 		##################################################
 		# Blocks
 		##################################################
-		self.wxgui_scopesink2_0 = scopesink2.scope_sink_c(
+		self.wxgui_scopesink2_0 = scopesink2.scope_sink_f(
 			self.GetWin(),
-			title="Scope Plot",
+			title="Correlator -2 (Wire)",
 			sample_rate=samp_rate*2,
-			v_scale=10,
-			v_offset=30,
+			v_scale=50,
+			v_offset=250,
 			t_scale=.0002,
 			ac_couple=False,
 			xy_mode=False,
@@ -46,7 +46,7 @@ class top_block(grc_wxgui.top_block_gui):
 			y_axis_label="Counts",
 		)
 		self.Add(self.wxgui_scopesink2_0.win)
-		self.sprite_correlator_cc_0 = sprite.correlator_cc(-2)
+		self.sprite_correlator_cf_0 = sprite.correlator_cf(-2)
 		self.rtl2832_source_0 = baz.rtl_source_c(defer_creation=True, output_size=gr.sizeof_gr_complex)
 		self.rtl2832_source_0.set_verbose(True)
 		self.rtl2832_source_0.set_vid(0x0)
@@ -70,9 +70,9 @@ class top_block(grc_wxgui.top_block_gui):
 		
 		
 		
-		self.rtl2832_source_0.set_auto_gain_mode(False)
+		self.rtl2832_source_0.set_auto_gain_mode(True)
 		self.rtl2832_source_0.set_relative_gain(True)
-		self.rtl2832_source_0.set_gain(.9)
+		self.rtl2832_source_0.set_gain(0.6)
 		  
 		self.blks2_rational_resampler_xxx_0 = blks2.rational_resampler_ccc(
 			interpolation=1,
@@ -84,9 +84,9 @@ class top_block(grc_wxgui.top_block_gui):
 		##################################################
 		# Connections
 		##################################################
-		self.connect((self.sprite_correlator_cc_0, 0), (self.wxgui_scopesink2_0, 0))
 		self.connect((self.rtl2832_source_0, 0), (self.blks2_rational_resampler_xxx_0, 0))
-		self.connect((self.blks2_rational_resampler_xxx_0, 0), (self.sprite_correlator_cc_0, 0))
+		self.connect((self.blks2_rational_resampler_xxx_0, 0), (self.sprite_correlator_cf_0, 0))
+		self.connect((self.sprite_correlator_cf_0, 0), (self.wxgui_scopesink2_0, 0))
 
 	def get_samp_rate(self):
 		return self.samp_rate
