@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Mon Nov  5 23:08:37 2012</timestamp>
+  <timestamp>Wed Nov  7 15:34:48 2012</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -84,6 +84,45 @@
     </param>
   </block>
   <block>
+    <key>blks2_rational_resampler_xxx</key>
+    <param>
+      <key>id</key>
+      <value>blks2_rational_resampler_xxx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>15</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>fractional_bw</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(245, 145)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>rtl2832_source</key>
     <param>
       <key>id</key>
@@ -119,7 +158,7 @@
     </param>
     <param>
       <key>gain</key>
-      <value>0.6</value>
+      <value>0.2</value>
     </param>
     <param>
       <key>gain_mode</key>
@@ -183,52 +222,6 @@
     </param>
   </block>
   <block>
-    <key>sprite_correlator_cf</key>
-    <param>
-      <key>id</key>
-      <value>sprite_correlator_cf_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>prn_id</key>
-      <value>-2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(357, 60)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>sprite_correlator_cf</key>
-    <param>
-      <key>id</key>
-      <value>sprite_correlator_cf_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>prn_id</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(357, 283)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>gr_sub_xx</key>
     <param>
       <key>id</key>
@@ -236,7 +229,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>type</key>
@@ -253,45 +246,6 @@
     <param>
       <key>_coordinate</key>
       <value>(564, 154)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blks2_rational_resampler_xxx</key>
-    <param>
-      <key>id</key>
-      <value>blks2_rational_resampler_xxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>15</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>[]</value>
-    </param>
-    <param>
-      <key>fractional_bw</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(245, 145)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -374,30 +328,22 @@
     </param>
   </block>
   <block>
-    <key>gr_threshold_ff</key>
+    <key>sprite_correlator_cf</key>
     <param>
       <key>id</key>
-      <value>gr_threshold_ff_0</value>
+      <value>sprite_correlator_cf_0_0</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
-      <key>low</key>
-      <value>-100</value>
-    </param>
-    <param>
-      <key>high</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>init</key>
-      <value>0</value>
+      <key>prn_id</key>
+      <value>-1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(778, 332)</value>
+      <value>(357, 283)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -405,26 +351,22 @@
     </param>
   </block>
   <block>
-    <key>gr_rms_xx</key>
+    <key>sprite_correlator_cf</key>
     <param>
       <key>id</key>
-      <value>gr_rms_xx_0</value>
+      <value>sprite_correlator_cf_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>alpha</key>
-      <value>.0001</value>
+      <key>prn_id</key>
+      <value>-2</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(663, 294)</value>
+      <value>(357, 60)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -460,5 +402,23 @@
     <sink_block_id>gr_sub_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gr_sub_xx_0</source_block_id>
+    <sink_block_id>wxgui_scopesink2_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sprite_correlator_cf_0</source_block_id>
+    <sink_block_id>wxgui_scopesink2_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sprite_correlator_cf_0_0</source_block_id>
+    <sink_block_id>wxgui_scopesink2_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
 </flow_graph>
