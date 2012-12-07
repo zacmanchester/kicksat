@@ -150,10 +150,10 @@ sprite_correlator_cf::work (int noutput_items,
 	gr_complex* fft_out = m_fft_buffer_out;
 	
 	// Do <+signal processing+>
-	for(int k = 0; k < noutput_items; k++) {
+	for(int k = 0; k < noutput_items; ++k) {
 		
 		//Pointwise multiply by baseband template and copy to fft input
-		for (int j = 0; j < 512; j++)
+		for (int j = 0; j < 512; ++j)
 		{
 			fft_in[j] = m_template[j]*in[j+k-511];
 		}
@@ -164,7 +164,7 @@ sprite_correlator_cf::work (int noutput_items,
 		//Find largest value in FFT
 		float mag2 = real(fft_out[0]*conj(fft_out[0]));
 		float max = mag2;
-		for (int j = 1; j < 512; j++)
+		for (int j = 1; j < 512; ++j)
 		{
 			mag2 = real(fft_out[j]*conj(fft_out[j]));
 			if (mag2 > max)
