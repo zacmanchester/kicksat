@@ -39,7 +39,7 @@ SPRITE_API sprite_stddev_ff_sptr sprite_make_stddev_ff ();
 class SPRITE_API sprite_stddev_ff : public gr_sync_block
 {
  private:
-	friend SPRITE_API sprite_stddev_ff_sptr sprite_make_square2_ff();
+	friend SPRITE_API sprite_stddev_ff_sptr sprite_make_stddev_ff();
 	sprite_stddev_ff();
 	float m_buffer[1024];
 
