@@ -24,5 +24,6 @@ install(FILES
     sprite_api.h
     sprite_correlator_cf.h
     sprite_bitdetector_fb.h
-    sprite_stddev_ff.h DESTINATION include/sprite
+    sprite_stddev_ff.h
+    sprite_bit_threshold_fb.h DESTINATION include/sprite
 )

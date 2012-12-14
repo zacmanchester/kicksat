@@ -19,5 +19,6 @@
 install(FILES
     sprite_correlator_cf.xml
     sprite_bitdetector_fb.xml
-    sprite_stddev_ff.xml DESTINATION share/gnuradio/grc/blocks
+    sprite_stddev_ff.xml
+    sprite_bit_threshold_fb.xml DESTINATION share/gnuradio/grc/blocks
 )
