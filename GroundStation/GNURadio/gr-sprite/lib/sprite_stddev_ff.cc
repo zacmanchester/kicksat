@@ -41,9 +41,9 @@ sprite_stddev_ff::sprite_stddev_ff()
 		   gr_make_io_signature(1, 1, sizeof(float)))
 {
 	//Fill buffer with 1's to start
-	for(int k = 0; k < 1024; ++k)
+	for(int k = 0; k < 5120; ++k)
 	{
-		m_buffer[k] = 1.0/1024;
+		m_buffer[k] = 1.0/5120;
 	}
 }
 
@@ -69,13 +69,13 @@ sprite_stddev_ff::work(int noutput_items,
 	for(int k = 0; k < noutput_items; ++k)
 	{
 		out[k] = 0;
-		for(int j = 0; j < 1023; ++j)
+		for(int j = 0; j < 5119; ++j)
 		{
 			m_buffer[j] = m_buffer[j+1];
 			out[k] += m_buffer[j];
 		}
-		m_buffer[1023] = in[k]*in[k]/1024;
-		out[k] += m_buffer[1023];
+		m_buffer[1019] = in[k]*in[k]/5120;
+		out[k] += m_buffer[5119];
 
 		out[k] = sqrt(out[k]);
 	}
