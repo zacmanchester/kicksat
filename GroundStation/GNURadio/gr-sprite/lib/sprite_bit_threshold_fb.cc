@@ -40,7 +40,8 @@ sprite_bit_threshold_fb::sprite_bit_threshold_fb ()
 		   gr_make_io_signature(2, 2, sizeof (float)),
 		   gr_make_io_signature(1, 1, sizeof (char)))
 {
-	// Put in <+constructor stuff+> here
+	counter = 0;
+	current_output = 0;
 }
 
 
@@ -64,17 +65,6 @@ sprite_bit_threshold_fb::work(int noutput_items,
 
 	for(int k = 0; k < noutput_items; ++k)
 	{
-		if(in[k] > threshold[k])
-		{
-			current_output = 1;
-			counter = 512;
-		}
-		else if(in[k] < -threshold[k])
-		{
-			current_output = -1;
-			counter = 512;
-		}
-
 		if(counter)
 		{
 			out[k] = current_output;
@@ -82,6 +72,17 @@ sprite_bit_threshold_fb::work(int noutput_items,
 		}
 		else
 		{
+			if(in[k] > threshold[k])
+			{
+				current_output = 1;
+				counter = 512;
+			}
+			else if(in[k] < -threshold[k])
+			{
+				current_output = -1;
+				counter = 512;
+			}
+
 			out[k] = 0;
 		}
 	}
