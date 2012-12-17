@@ -60,7 +60,7 @@ sprite_bit_threshold_fb::work(int noutput_items,
 {
 	const float *in = (const float *) input_items[0];
 	const float *threshold = (const float *) input_items[1];
-	float *out = (float *) output_items[0];
+	char *out = (char *) output_items[0];
 
 	for(int k = 0; k < noutput_items; ++k)
 	{

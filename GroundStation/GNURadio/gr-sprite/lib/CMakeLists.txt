@@ -19,7 +19,7 @@
 # Setup library
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
-add_library(gnuradio-sprite SHARED sprite_correlator_cf.cc sprite_bitdetector_fb.cc sprite_stddev_ff.cc sprite_bit_threshold_fb.cc )
+add_library(gnuradio-sprite SHARED sprite_correlator_cf.cc sprite_stddev_ff.cc sprite_bit_threshold_fb.cc )
 target_link_libraries(gnuradio-sprite ${Boost_LIBRARIES} ${GRUEL_LIBRARIES} ${GNURADIO_CORE_LIBRARIES})
 set_target_properties(gnuradio-sprite PROPERTIES DEFINE_SYMBOL "gnuradio_sprite_EXPORTS")
 

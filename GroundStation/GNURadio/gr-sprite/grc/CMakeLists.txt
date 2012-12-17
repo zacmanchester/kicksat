@@ -18,7 +18,6 @@
 # Boston, MA 02110-1301, USA.
 install(FILES
     sprite_correlator_cf.xml
-    sprite_bitdetector_fb.xml
     sprite_stddev_ff.xml
     sprite_bit_threshold_fb.xml DESTINATION share/gnuradio/grc/blocks
 )
