@@ -42,6 +42,7 @@ class SPRITE_API sprite_stddev_ff : public gr_sync_block
 	friend SPRITE_API sprite_stddev_ff_sptr sprite_make_stddev_ff();
 	sprite_stddev_ff();
 	float m_buffer[5120];
+	unsigned int m_index;
 
  public:
 	~sprite_stddev_ff();

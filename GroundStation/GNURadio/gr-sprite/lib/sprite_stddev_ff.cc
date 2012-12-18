@@ -40,11 +40,13 @@ sprite_stddev_ff::sprite_stddev_ff()
 		   gr_make_io_signature(1, 1, sizeof(float)),
 		   gr_make_io_signature(1, 1, sizeof(float)))
 {
-	//Fill buffer with 1's to start
+	//Initialize Std. Dev. to 1
 	for(int k = 0; k < 5120; ++k)
 	{
 		m_buffer[k] = 1.0/5120;
 	}
+
+	m_index = 0;
 }
 
 
@@ -65,19 +67,25 @@ sprite_stddev_ff::work(int noutput_items,
 	const float *in = (const float *) input_items[0];
 	float *out = (float *) output_items[0];
 
-	// Do <+signal processing+>
 	for(int k = 0; k < noutput_items; ++k)
 	{
-		out[k] = 0;
-		for(int j = 0; j < 5119; ++j)
+		m_buffer[m_index] = in[k]*in[k]/5120;
+
+		for(int j = 0; j < 5120; ++j)
 		{
-			m_buffer[j] = m_buffer[j+1];
 			out[k] += m_buffer[j];
 		}
-		m_buffer[1019] = in[k]*in[k]/5120;
-		out[k] += m_buffer[5119];
 
 		out[k] = sqrt(out[k]);
+
+		if(m_index < 5120)
+		{
+			++m_index;
+		}
+		else
+		{
+			m_index = 0;
+		}
 	}
 
 	// Tell runtime system how many output items we produced.
