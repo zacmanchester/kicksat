@@ -64,11 +64,10 @@ unsigned char prn2[64] = {
   0b01011001, 0b11100011, 0b11101110, 0b10000011, 0b01011011, 0b01110110, 0b00001011, 0b01011110
 };
 
-SpriteRadio m_radio;
+SpriteRadio m_radio = SpriteRadio(prn1, prn2, rfSettings);
 
 void setup() {
   pinMode(5, OUTPUT);
-  m_radio = SpriteRadio();
   m_radio.txInit();
 };
 
@@ -77,84 +76,8 @@ void loop() {
   
   //Blink LED, wait a second
   digitalWrite(5, HIGH);
-  m_radio.transmit(prn1,64);
+  m_radio.rawTransmit(prn1,64);
   delay(300);
   digitalWrite(5, LOW);
   delay(700);
 };
-
-
-void txInit() {
-  
-  char status;
-  
-  Radio.reset();
-  Radio.writeConfiguration(&rfSettings);  // Write settings to configuration registers
-  Radio.writePATable(0xC3);  // 10 dBm output power
-  
-  //Put radio into idle state
-  status = Radio.strobe(RF_SIDLE);
-  while (status & 0xF0)
-  {
-    status = Radio.strobe(RF_SNOP);
-  }
-}
-
-void transmit(unsigned char bytes[], unsigned int length) {
-  
-  char status;
-
-  //Wait for radio to be in idle state
-  status = Radio.strobe(RF_SIDLE);
-  while (status & 0xF0)
-  {
-    status = Radio.strobe(RF_SNOP);
-  }
-  
-  //Clear TX FIFO
-  status = Radio.strobe(RF_SFTX);
-  
-  if(length <= 64)
-  {
-    Radio.writeTXBuffer(bytes, length); //Write bytes to transmit buffer
-    status = Radio.strobe(RF_STX);  //Turn on transmitter
-  }
-  else
-  {
-    unsigned char bytes_free, bytes_to_write;
-    unsigned int bytes_to_go, counter;
-    
-    Radio.writeTXBuffer(bytes, 64); //Write first 64 bytes to transmit buffer
-    bytes_to_go = length - 64;
-    counter = 64;
-    
-    status = Radio.strobe(RF_STX);  //Turn on transmitter
-    
-    //Wait for oscillator to stabilize
-    while (status & 0xC0)
-    {
-      status = Radio.strobe(RF_SNOP);
-    }
-    
-    while(bytes_to_go)
-    {
-      Serial.println(bytes_to_go);
-      delay(1); //Wait for some bytes to be transmitted
-    
-      bytes_free = Radio.strobe(RF_SNOP) & 0x0F;
-      bytes_to_write = bytes_free < bytes_to_go ? bytes_free : bytes_to_go;
-    
-      Radio.writeTXBuffer(bytes+counter, bytes_to_write);
-      bytes_to_go -= bytes_to_write;
-      counter += bytes_to_write;
-    }
-  }
-  
-  //Wait for transmission to finish
-  while(status != 0x7F)
-  {
-    status = Radio.strobe(RF_SNOP);
-  }
-  Radio.strobe(RF_SIDLE); //Put radio back in idle mode
-  return;
-}
