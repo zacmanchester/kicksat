@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Mon Dec 17 16:48:19 2012</timestamp>
+  <timestamp>Mon Jan  7 16:28:25 2013</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -61,29 +61,6 @@
     </param>
   </block>
   <block>
-    <key>sprite_correlator_cf</key>
-    <param>
-      <key>id</key>
-      <value>sprite_correlator_cf_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>prn_id</key>
-      <value>-2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(357, 60)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>id</key>
@@ -107,45 +84,6 @@
     </param>
   </block>
   <block>
-    <key>blks2_rational_resampler_xxx</key>
-    <param>
-      <key>id</key>
-      <value>blks2_rational_resampler_xxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>15</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>[]</value>
-    </param>
-    <param>
-      <key>fractional_bw</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(245, 145)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>sprite_correlator_cf</key>
     <param>
       <key>id</key>
@@ -162,105 +100,6 @@
     <param>
       <key>_coordinate</key>
       <value>(357, 283)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>rtl2832_source</key>
-    <param>
-      <key>id</key>
-      <value>rtl2832_source_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>verbose</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>sample_rate</key>
-      <value>960e3</value>
-    </param>
-    <param>
-      <key>frequency</key>
-      <value>437.5e6</value>
-    </param>
-    <param>
-      <key>bandwidth</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>relative_gain</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>0.2</value>
-    </param>
-    <param>
-      <key>gain_mode</key>
-      <value></value>
-    </param>
-    <param>
-      <key>auto_gain_mode</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>usb_vid</key>
-      <value>0x0</value>
-    </param>
-    <param>
-      <key>usb_pid</key>
-      <value>0x0</value>
-    </param>
-    <param>
-      <key>tuner_name</key>
-      <value></value>
-    </param>
-    <param>
-      <key>read_length</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>xfer_timeout</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>use_buffer</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>buf_mul</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>buf_level</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>fir_coeffs</key>
-      <value>[]</value>
-    </param>
-    <param>
-      <key>xtal_freq</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>status_out</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(6, 104)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -326,81 +165,6 @@
     </param>
   </block>
   <block>
-    <key>wxgui_scopesink2</key>
-    <param>
-      <key>id</key>
-      <value>wxgui_scopesink2_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>Threshold Output</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>v_scale</key>
-      <value>.5</value>
-    </param>
-    <param>
-      <key>v_offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>t_scale</key>
-      <value>.0002</value>
-    </param>
-    <param>
-      <key>ac_couple</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>xy_mode</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>win_size</key>
-      <value></value>
-    </param>
-    <param>
-      <key>grid_pos</key>
-      <value></value>
-    </param>
-    <param>
-      <key>notebook</key>
-      <value></value>
-    </param>
-    <param>
-      <key>trig_mode</key>
-      <value>gr.gr_TRIG_MODE_NORM</value>
-    </param>
-    <param>
-      <key>y_axis_label</key>
-      <value>Counts</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(993, 0)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>sprite_bit_threshold_fb</key>
     <param>
       <key>id</key>
@@ -420,10 +184,41 @@
     </param>
   </block>
   <block>
-    <key>wxgui_scopesink2</key>
+    <key>blocks_multiply_const_vxx</key>
     <param>
       <key>id</key>
-      <value>wxgui_scopesink2_0_1</value>
+      <value>blocks_multiply_const_vxx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>5</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(807, 307)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blks2_rational_resampler_xxx</key>
+    <param>
+      <key>id</key>
+      <value>blks2_rational_resampler_xxx_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -431,63 +226,50 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>ccc</value>
     </param>
     <param>
-      <key>title</key>
-      <value>Correlator Output</value>
+      <key>decim</key>
+      <value>15</value>
     </param>
     <param>
-      <key>samp_rate</key>
-      <value>samp_rate*2</value>
-    </param>
-    <param>
-      <key>v_scale</key>
-      <value>20</value>
-    </param>
-    <param>
-      <key>v_offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>t_scale</key>
-      <value>.0002</value>
-    </param>
-    <param>
-      <key>ac_couple</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>xy_mode</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
+      <key>interp</key>
       <value>1</value>
     </param>
     <param>
-      <key>win_size</key>
-      <value></value>
+      <key>taps</key>
+      <value>[]</value>
     </param>
     <param>
-      <key>grid_pos</key>
-      <value></value>
-    </param>
-    <param>
-      <key>notebook</key>
-      <value></value>
-    </param>
-    <param>
-      <key>trig_mode</key>
-      <value>gr.gr_TRIG_MODE_NORM</value>
-    </param>
-    <param>
-      <key>y_axis_label</key>
-      <value>Counts</value>
+      <key>fractional_bw</key>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(573, 2)</value>
+      <value>(245, 146)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_correlator_cf</key>
+    <param>
+      <key>id</key>
+      <value>sprite_correlator_cf_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>prn_id</key>
+      <value>-2</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(357, 61)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -522,7 +304,7 @@
     </param>
     <param>
       <key>freq0</key>
-      <value>437.5e6</value>
+      <value>437.24e6</value>
     </param>
     <param>
       <key>corr0</key>
@@ -642,7 +424,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(33, 237)</value>
+      <value>(32, 239)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -650,41 +432,10 @@
     </param>
   </block>
   <block>
-    <key>blocks_multiply_const_vxx</key>
+    <key>wxgui_scopesink2</key>
     <param>
       <key>id</key>
-      <value>blocks_multiply_const_vxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>const</key>
-      <value>5</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(807, 307)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>const_source_x</key>
-    <param>
-      <key>id</key>
-      <value>const_source_x_0</value>
+      <value>wxgui_scopesink2_0_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -695,31 +446,60 @@
       <value>float</value>
     </param>
     <param>
-      <key>const</key>
+      <key>title</key>
+      <value>Threshold Output</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>v_scale</key>
       <value>.5</value>
     </param>
     <param>
-      <key>_coordinate</key>
-      <value>(588, 333)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
+      <key>v_offset</key>
       <value>0</value>
     </param>
-  </block>
-  <block>
-    <key>sprite_stddev_ff</key>
     <param>
-      <key>id</key>
-      <value>sprite_stddev_ff_0</value>
+      <key>t_scale</key>
+      <value>.0002</value>
     </param>
     <param>
-      <key>_enabled</key>
-      <value>True</value>
+      <key>ac_couple</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>xy_mode</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>win_size</key>
+      <value></value>
+    </param>
+    <param>
+      <key>grid_pos</key>
+      <value></value>
+    </param>
+    <param>
+      <key>notebook</key>
+      <value></value>
+    </param>
+    <param>
+      <key>trig_mode</key>
+      <value>gr.gr_TRIG_MODE_NORM</value>
+    </param>
+    <param>
+      <key>y_axis_label</key>
+      <value>Counts</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 398)</value>
+      <value>(993, 0)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -734,7 +514,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>type</key>
@@ -794,31 +574,233 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(805, 390)</value>
+      <value>(804, 390)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
   </block>
-  <connection>
-    <source_block_id>rtl2832_source_0</source_block_id>
-    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>sprite_correlator_cf_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>sprite_correlator_cf_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
+  <block>
+    <key>wxgui_scopesink2</key>
+    <param>
+      <key>id</key>
+      <value>wxgui_scopesink2_0_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>title</key>
+      <value>Correlator Output</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate*2</value>
+    </param>
+    <param>
+      <key>v_scale</key>
+      <value>20</value>
+    </param>
+    <param>
+      <key>v_offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>t_scale</key>
+      <value>.0002</value>
+    </param>
+    <param>
+      <key>ac_couple</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>xy_mode</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>win_size</key>
+      <value></value>
+    </param>
+    <param>
+      <key>grid_pos</key>
+      <value></value>
+    </param>
+    <param>
+      <key>notebook</key>
+      <value></value>
+    </param>
+    <param>
+      <key>trig_mode</key>
+      <value>gr.gr_TRIG_MODE_NORM</value>
+    </param>
+    <param>
+      <key>y_axis_label</key>
+      <value>Counts</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(575, 1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_stddev_ff</key>
+    <param>
+      <key>id</key>
+      <value>sprite_stddev_ff_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(592, 398)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>const_source_x</key>
+    <param>
+      <key>id</key>
+      <value>const_source_x_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>50</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(588, 333)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>rtl2832_source</key>
+    <param>
+      <key>id</key>
+      <value>rtl2832_source_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>verbose</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>sample_rate</key>
+      <value>960e3</value>
+    </param>
+    <param>
+      <key>frequency</key>
+      <value>437.24e6</value>
+    </param>
+    <param>
+      <key>bandwidth</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>relative_gain</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>0.2</value>
+    </param>
+    <param>
+      <key>gain_mode</key>
+      <value></value>
+    </param>
+    <param>
+      <key>auto_gain_mode</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>usb_vid</key>
+      <value>0x0</value>
+    </param>
+    <param>
+      <key>usb_pid</key>
+      <value>0x0</value>
+    </param>
+    <param>
+      <key>tuner_name</key>
+      <value></value>
+    </param>
+    <param>
+      <key>read_length</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>xfer_timeout</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>use_buffer</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>buf_mul</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>buf_level</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>fir_coeffs</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>xtal_freq</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>status_out</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(7, 104)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
   <connection>
     <source_block_id>sprite_correlator_cf_0</source_block_id>
     <sink_block_id>gr_sub_xx_0</sink_block_id>
@@ -830,12 +812,6 @@
     <sink_block_id>gr_sub_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rtlsdr_source_c_0</source_block_id>
-    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>gr_sub_xx_0</source_block_id>
@@ -890,5 +866,29 @@
     <sink_block_id>sprite_bit_threshold_fb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rtlsdr_source_c_0</source_block_id>
+    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>sprite_correlator_cf_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blks2_rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>sprite_correlator_cf_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rtl2832_source_0</source_block_id>
+    <sink_block_id>blks2_rational_resampler_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
 </flow_graph>
