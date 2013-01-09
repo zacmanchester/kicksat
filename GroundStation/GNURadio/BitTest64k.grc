@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Tue Jan  8 16:25:26 2013</timestamp>
+  <timestamp>Tue Jan  8 16:53:48 2013</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -505,29 +505,6 @@
     <key>sprite_correlator_cf</key>
     <param>
       <key>id</key>
-      <value>sprite_correlator_cf_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>prn_id</key>
-      <value>-2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(357, 62)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>sprite_correlator_cf</key>
-    <param>
-      <key>id</key>
       <value>sprite_correlator_cf_0_0</value>
     </param>
     <param>
@@ -541,6 +518,60 @@
     <param>
       <key>_coordinate</key>
       <value>(358, 283)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_sub_xx</key>
+    <param>
+      <key>id</key>
+      <value>blocks_sub_xx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(542, 149)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_correlator_cf</key>
+    <param>
+      <key>id</key>
+      <value>sprite_correlator_cf_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>prn_id</key>
+      <value>-2</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(357, 62)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -615,7 +646,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(701, 5)</value>
+      <value>(679, 58)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -623,76 +654,18 @@
     </param>
   </block>
   <block>
-    <key>blocks_sub_xx</key>
+    <key>sprite_soft_threshold_ff</key>
     <param>
       <key>id</key>
-      <value>blocks_sub_xx_0</value>
+      <value>sprite_soft_threshold_ff_0</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>2</value>
+      <value>False</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(542, 149)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>const_source_x</key>
-    <param>
-      <key>id</key>
-      <value>const_source_x_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>const</key>
-      <value>20</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(566, 326)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>sprite_bit_threshold_fb</key>
-    <param>
-      <key>id</key>
-      <value>sprite_bit_threshold_fb_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(737, 193)</value>
+      <value>(526, 23)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -801,6 +774,52 @@
       <value>0</value>
     </param>
   </block>
+  <block>
+    <key>sprite_bit_threshold_fb</key>
+    <param>
+      <key>id</key>
+      <value>sprite_bit_threshold_fb_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(737, 193)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>const_source_x</key>
+    <param>
+      <key>id</key>
+      <value>const_source_x_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>20</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(566, 326)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
   <connection>
     <source_block_id>sprite_stddev_ff_0</source_block_id>
     <sink_block_id>wxgui_scopesink2_0</sink_block_id>
@@ -870,6 +889,18 @@
   <connection>
     <source_block_id>sprite_bit_threshold_fb_0</source_block_id>
     <sink_block_id>gr_char_to_float_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sprite_correlator_cf_0</source_block_id>
+    <sink_block_id>sprite_soft_threshold_ff_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sprite_soft_threshold_ff_0</source_block_id>
+    <sink_block_id>wxgui_scopesink2_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -25,5 +25,5 @@ install(FILES
     sprite_correlator_cf.h
     sprite_stddev_ff.h
     sprite_bit_threshold_fb.h
-    sprite_soft_threshold_ff.h DESTINATION include/sprite
+    DESTINATION include/sprite
 )
