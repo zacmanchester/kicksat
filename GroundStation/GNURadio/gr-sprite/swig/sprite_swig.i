@@ -12,6 +12,7 @@
 #include "sprite_correlator_cf.h"
 #include "sprite_stddev_ff.h"
 #include "sprite_bit_threshold_fb.h"
+#include "sprite_bit_decimator_fb.h"
 %}
 
 
@@ -23,3 +24,6 @@ GR_SWIG_BLOCK_MAGIC(sprite,stddev_ff);
 
 GR_SWIG_BLOCK_MAGIC(sprite,bit_threshold_fb);
 %include "sprite_bit_threshold_fb.h"
+
+GR_SWIG_BLOCK_MAGIC(sprite,bit_decimator_fb);
+%include "sprite_bit_decimator_fb.h"
