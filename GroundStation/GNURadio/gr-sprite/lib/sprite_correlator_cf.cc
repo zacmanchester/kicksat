@@ -155,7 +155,7 @@ sprite_correlator_cf::work (int noutput_items,
 		//Pointwise multiply by baseband template and copy to fft input
 		for (int j = 0; j < 512; ++j)
 		{
-			fft_in[j] = m_template[j]*in[j+k-511];
+			fft_in[j] = m_template[j]*in[j+k];
 		}
 		
 		//Take FFT

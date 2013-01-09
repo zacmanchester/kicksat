@@ -75,12 +75,12 @@ sprite_bit_threshold_fb::work(int noutput_items,
 			if(in[k] > threshold[k])
 			{
 				current_output = 1;
-				counter = 512;
+				counter = 511;
 			}
 			else if(in[k] < -threshold[k])
 			{
 				current_output = -1;
-				counter = 512;
+				counter = 511;
 			}
 
 			out[k] = 0;
