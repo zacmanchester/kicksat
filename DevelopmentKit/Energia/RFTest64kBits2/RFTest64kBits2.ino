@@ -30,16 +30,17 @@ SpriteRadio m_radio = SpriteRadio(prn0, prn1);
 
 void setup() {
   pinMode(5, OUTPUT);
-  //m_radio = SpriteRadio(prn0, prn1);
   m_radio.txInit();
 };
 
 
 void loop() {
-  //Blink LED, wait a second
+  //Blink LED while transmitter is on
   digitalWrite(5, HIGH);
   m_radio.transmit("Hello World", 11);
   digitalWrite(5, LOW);
+  
+  //Wait a second
   delay(1000);
 };
 
