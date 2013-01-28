@@ -1,11 +1,12 @@
 #include <SpriteRadio.h>
 
 /*
-  This example code will configure the CC1101 radio core in the CC430 to continuously transmit a PRN sequence.
-  The output signal will be MSK modulated at 64 kbps on a 437.5 MHz carrier.
+  This example code will configure the CC1101 radio core in the CC430 to
+  transmit a PRN sequence once per second. The output signal will be MSK
+  modulated at 64 kbps on a 437.24 MHz carrier.
 */
 
-unsigned char prn0[64] = {
+unsigned char prn1[64] = {
   0b10101010, 0b11110111, 0b11100111, 0b10100100, 0b11111001, 0b01111101, 0b00000010, 0b11000100,
   0b11001110, 0b11110101, 0b10110111, 0b01010110, 0b10010111, 0b01000100, 0b00010000, 0b11010111,
   0b01100001, 0b00011111, 0b11110001, 0b10000010, 0b10001110, 0b11010000, 0b10111000, 0b01110000,
@@ -15,7 +16,7 @@ unsigned char prn0[64] = {
   0b01010100, 0b01010011, 0b10001010, 0b11100101, 0b01100000, 0b00110111, 0b10001000, 0b10110101,
   0b10010010, 0b01011001, 0b10110001, 0b10100111, 0b10000001, 0b11110110, 0b01011011, 0b11100000
 };
-unsigned char prn1[64] = {
+unsigned char prn2[64] = {
   0b10101010, 0b10000001, 0b01001010, 0b11110010, 0b11101110, 0b00000111, 0b00111010, 0b01001111,
   0b01011101, 0b01000100, 0b10000110, 0b01110000, 0b10111101, 0b10110011, 0b01000011, 0b10111100,
   0b00111111, 0b11100000, 0b11110111, 0b11000101, 0b11001100, 0b10000010, 0b01010011, 0b10110100,
@@ -26,7 +27,7 @@ unsigned char prn1[64] = {
   0b01011001, 0b11100011, 0b11101110, 0b10000011, 0b01011011, 0b01110110, 0b00001011, 0b01011110
 };
 
-SpriteRadio m_radio = SpriteRadio(prn0, prn1);
+SpriteRadio m_radio = SpriteRadio(prn1, prn2, rfSettings);
 
 void setup() {
   pinMode(5, OUTPUT);
@@ -35,12 +36,11 @@ void setup() {
 
 
 void loop() {
-  //Blink LED while transmitter is on
-  digitalWrite(5, HIGH);
-  m_radio.transmit("Hello World", 11);
-  digitalWrite(5, LOW);
   
-  //Wait a second
-  delay(1000);
+  //Blink LED, wait a second
+  digitalWrite(5, HIGH);
+  m_radio.rawTransmit(prn1,64);
+  delay(300);
+  digitalWrite(5, LOW);
+  delay(700);
 };
-
