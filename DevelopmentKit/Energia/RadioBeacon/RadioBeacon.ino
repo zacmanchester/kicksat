@@ -27,7 +27,7 @@ unsigned char prn2[64] = {
   0b01011001, 0b11100011, 0b11101110, 0b10000011, 0b01011011, 0b01110110, 0b00001011, 0b01011110
 };
 
-SpriteRadio m_radio = SpriteRadio(prn1, prn2, rfSettings);
+SpriteRadio m_radio = SpriteRadio(prn1, prn2);
 
 void setup() {
   pinMode(5, OUTPUT);
