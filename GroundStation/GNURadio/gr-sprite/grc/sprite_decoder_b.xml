@@ -4,15 +4,18 @@
   <key>sprite_decoder_b</key>
   <category>Sprite</category>
   <import>import sprite</import>
-  <make>sprite.decoder_b(filename)</make>
+  <make>sprite.decoder_b($filename)</make>
+
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
        * key (makes the value accessible as $keyname, e.g. in the make node)
        * type -->
+
   <param>
     <name>FIlename</name>
     <key>filename</key>
+    <value></value>
     <type>string</type>
   </param>
 

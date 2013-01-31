@@ -29,7 +29,7 @@ class sprite_decoder_b;
 
 typedef boost::shared_ptr<sprite_decoder_b> sprite_decoder_b_sptr;
 
-SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(std::string &filename);
+SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(const std::string &filename);
 
 /*!
  * \brief <+description+>
@@ -39,8 +39,8 @@ SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(std::string &filename);
 class SPRITE_API sprite_decoder_b : public gr_sync_block
 {
  private:
-	friend SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(std::string &filename);
-	sprite_decoder_b(std::string &filename);
+	friend SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(const std::string &filename);
+	sprite_decoder_b(const std::string &filename);
 	char bytedecode(char *buffer);
 	unsigned int m_counter;
 	char m_buffer[15];

@@ -28,15 +28,15 @@
 #include <iostream> 
 
 sprite_decoder_b_sptr
-sprite_make_decoder_b (std::string &filename)
+sprite_make_decoder_b(const std::string &filename)
 {
-	return gnuradio::get_initial_sptr (new sprite_decoder_b(filename));
+	return gnuradio::get_initial_sptr(new sprite_decoder_b(filename));
 }
 
 /*
  * The private constructor
  */
-sprite_decoder_b::sprite_decoder_b (std::string &filename)
+sprite_decoder_b::sprite_decoder_b(const std::string &filename)
   : gr_sync_block ("decoder_b",
 		   gr_make_io_signature(1, 1, sizeof(char)),
 		   gr_make_io_signature(0, 0, 0))
@@ -84,7 +84,7 @@ sprite_decoder_b::work(int noutput_items,
 			if(in[k])
 			{
 				//we found a bit!
-				m_counter = 15;
+				m_counter = 14;
 
 				//Now copy the next 15 bits into our buffer for processing
 				for(int j = 0; j < 15; ++j)
