@@ -25,5 +25,6 @@ install(FILES
     sprite_correlator_cf.h
     sprite_stddev_ff.h
     sprite_bit_threshold_fb.h
-    sprite_bit_decimator_fb.h DESTINATION include/sprite
+    sprite_bit_decimator_fb.h
+    sprite_decoder_b.h DESTINATION include/sprite
 )
