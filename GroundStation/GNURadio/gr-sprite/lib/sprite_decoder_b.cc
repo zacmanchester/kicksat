@@ -54,7 +54,7 @@ sprite_decoder_b::~sprite_decoder_b()
 	// Put in <+destructor stuff+> here
 }
 
-char sprite_decoder_b::bytedecode(char* c)
+char sprite_decoder_b::bytedecode(const char* c)
 {
 	char m = 0;
 	//For now, just pack the last 8 bits into a char and return
@@ -86,14 +86,8 @@ sprite_decoder_b::work(int noutput_items,
 				//we found a bit!
 				m_counter = 14;
 
-				//Now copy the next 15 bits into our buffer for processing
-				for(int j = 0; j < 15; ++j)
-				{
-					m_buffer[j] = in[k+j];
-				}
-
 				//Decode the byte
-				char m = bytedecode(m_buffer);
+				char m = bytedecode(&in[k]);
 
 				//For now just write stuff to the console as we get it
 				std::cout << m;
