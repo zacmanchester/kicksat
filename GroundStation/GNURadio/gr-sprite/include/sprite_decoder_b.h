@@ -41,9 +41,8 @@ class SPRITE_API sprite_decoder_b : public gr_sync_block
  private:
 	friend SPRITE_API sprite_decoder_b_sptr sprite_make_decoder_b(const std::string &filename);
 	sprite_decoder_b(const std::string &filename);
-	char bytedecode(char *buffer);
+	char bytedecode(const char *buffer);
 	unsigned int m_counter;
-	char m_buffer[15];
 	static char H[4][15];
 	static char m_bits[8];
 
