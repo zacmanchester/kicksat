@@ -62,7 +62,7 @@ char sprite_decoder_b::bytedecode(const char* c)
 	char m = 0;
 	for(int k = 0; k < 8; ++k)
 	{
-		if(c[7+k] > 0)
+		if(c[14-k] > 0)
 		{
 			m |= m_bits[k];
 		}

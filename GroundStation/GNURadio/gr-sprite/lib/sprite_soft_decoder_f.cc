@@ -55,7 +55,56 @@ sprite_soft_decoder_f::~sprite_soft_decoder_f()
 
 char sprite_soft_decoder_f::softdecode(const float *buffer)
 {
+	int index = 0;
+	float max_corr = 0;
+	float corr;
+	float mag;
 
+	//Calculate the magnitude of the vector
+	mag = 0;
+	for(int k = 0; k < 15; ++k)
+	{
+		mag += buffer[k]*buffer[k];
+	}
+	mag = sqrt(mag);
+
+	//Multiply received vector by codeword matrix and look for maximum
+	for(int i = 0; i < 2048; ++i)
+	{
+		corr = 0;
+		for(int j = 0; j < 15; ++j)
+		{
+			corr += C[i][j]*buffer[j]/mag;
+		}
+		if(corr > max_corr)
+		{
+			max_corr = corr;
+			index = i;
+		}
+	}
+
+	/* Debug stuff
+	std::cout << '<';
+	std::cout << index;
+	std::cout << ", ";
+	std::cout << max_corr;
+	std::cout << '>';
+
+	char output = 0;
+	for(int i = 0; i < 8; ++i)
+	{
+		if(buffer[14-i] > 0)
+		{
+			output |= m_bits[i];
+		}
+	}
+
+	std::cout << '(';
+	std::cout << (int)output;
+	std::cout << ')';
+	*/
+
+	return (char)(0xFF & index);
 }
 
 int sprite_soft_decoder_f::work(int noutput_items,
@@ -71,7 +120,7 @@ int sprite_soft_decoder_f::work(int noutput_items,
 		{
 			if(in[k] > threshold[k] || in[k] < -threshold[k])
 			{
-				//we found a bit!
+				//we found a byte!
 				m_counter = 14;
 
 				//Decode the byte

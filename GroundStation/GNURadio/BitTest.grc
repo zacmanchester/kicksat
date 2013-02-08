@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Thu Feb  7 20:22:24 2013</timestamp>
+  <timestamp>Fri Feb  8 03:18:14 2013</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -278,33 +278,6 @@
     </param>
   </block>
   <block>
-    <key>gr_char_to_float</key>
-    <param>
-      <key>id</key>
-      <value>gr_char_to_float_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>scale</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(933, 230)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>sprite_correlator_cf</key>
     <param>
       <key>id</key>
@@ -351,41 +324,30 @@
     </param>
   </block>
   <block>
-    <key>sprite_bit_decimator_fb</key>
+    <key>gr_sub_xx</key>
     <param>
       <key>id</key>
-      <value>sprite_bit_decimator_fb_0</value>
+      <value>gr_sub_xx_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>_coordinate</key>
-      <value>(753, 185)</value>
+      <key>type</key>
+      <value>float</value>
     </param>
     <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>sprite_decoder_b</key>
-    <param>
-      <key>id</key>
-      <value>sprite_decoder_b_0</value>
+      <key>vlen</key>
+      <value>1</value>
     </param>
     <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename</key>
-      <value>~/test.txt</value>
+      <key>num_inputs</key>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(891, 338)</value>
+      <value>(483, 157)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -420,30 +382,26 @@
     </param>
   </block>
   <block>
-    <key>gr_sub_xx</key>
+    <key>gr_char_to_float</key>
     <param>
       <key>id</key>
-      <value>gr_sub_xx_0</value>
+      <value>gr_char_to_float_0</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
+      <value>False</value>
     </param>
     <param>
       <key>vlen</key>
       <value>1</value>
     </param>
     <param>
-      <key>num_inputs</key>
-      <value>2</value>
+      <key>scale</key>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(483, 157)</value>
+      <value>(933, 229)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -458,7 +416,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>type</key>
@@ -518,101 +476,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(985, 46)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>sprite_soft_bit_decimator_ff</key>
-    <param>
-      <key>id</key>
-      <value>sprite_soft_bit_decimator_ff_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(725, 427)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>wxgui_scopesink2</key>
-    <param>
-      <key>id</key>
-      <value>wxgui_scopesink2_0_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>Soft Bit Output</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>samp_rate/512</value>
-    </param>
-    <param>
-      <key>v_scale</key>
-      <value>.5</value>
-    </param>
-    <param>
-      <key>v_offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>t_scale</key>
-      <value>.0002</value>
-    </param>
-    <param>
-      <key>ac_couple</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>xy_mode</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>win_size</key>
-      <value></value>
-    </param>
-    <param>
-      <key>grid_pos</key>
-      <value></value>
-    </param>
-    <param>
-      <key>notebook</key>
-      <value></value>
-    </param>
-    <param>
-      <key>trig_mode</key>
-      <value>gr.gr_TRIG_MODE_NORM</value>
-    </param>
-    <param>
-      <key>y_axis_label</key>
-      <value>Counts</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(942, 414)</value>
+      <value>(985, 47)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -687,7 +551,87 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(591, 0)</value>
+      <value>(592, -15)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_soft_bit_decimator_ff</key>
+    <param>
+      <key>id</key>
+      <value>sprite_soft_bit_decimator_ff_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(705, 434)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_soft_decoder_f</key>
+    <param>
+      <key>id</key>
+      <value>sprite_soft_decoder_f_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(959, 434)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_bit_decimator_fb</key>
+    <param>
+      <key>id</key>
+      <value>sprite_bit_decimator_fb_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(754, 154)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>sprite_decoder_b</key>
+    <param>
+      <key>id</key>
+      <value>sprite_decoder_b_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>~/test.txt</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(893, 339)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -719,12 +663,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>const_source_x_0</source_block_id>
-    <sink_block_id>sprite_bit_decimator_fb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
     <source_block_id>sprite_bit_decimator_fb_0</source_block_id>
     <sink_block_id>gr_char_to_float_0</sink_block_id>
     <source_key>0</source_key>
@@ -741,12 +679,6 @@
     <sink_block_id>gr_sub_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gr_sub_xx_0</source_block_id>
-    <sink_block_id>sprite_bit_decimator_fb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>gr_sub_xx_0</source_block_id>
@@ -768,8 +700,26 @@
   </connection>
   <connection>
     <source_block_id>sprite_soft_bit_decimator_ff_0</source_block_id>
-    <sink_block_id>wxgui_scopesink2_0_0_0</sink_block_id>
+    <sink_block_id>sprite_soft_decoder_f_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>const_source_x_0</source_block_id>
+    <sink_block_id>sprite_soft_decoder_f_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gr_sub_xx_0</source_block_id>
+    <sink_block_id>sprite_bit_decimator_fb_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>const_source_x_0</source_block_id>
+    <sink_block_id>sprite_bit_decimator_fb_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
   </connection>
 </flow_graph>
