@@ -56,9 +56,10 @@ sprite_decoder_b::~sprite_decoder_b()
 
 char sprite_decoder_b::bytedecode(const char* c)
 {
+	//TODO: Hamming
+
+	//Pack into output byte
 	char m = 0;
-	//For now, just pack the last 8 bits into a char and return
-	//TODO: Hamming decoder
 	for(int k = 0; k < 8; ++k)
 	{
 		if(c[7+k] > 0)

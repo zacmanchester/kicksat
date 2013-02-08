@@ -23,62 +23,60 @@
 #endif
 
 #include <gr_io_signature.h>
-#include "sprite_bit_decimator_fb.h"
+#include "sprite_soft_bit_decimator_ff.h"
 
-
-sprite_bit_decimator_fb_sptr
-sprite_make_bit_decimator_fb ()
+sprite_soft_bit_decimator_ff_sptr
+sprite_make_soft_bit_decimator_ff()
 {
-	return gnuradio::get_initial_sptr(new sprite_bit_decimator_fb());
+	return gnuradio::get_initial_sptr(new sprite_soft_bit_decimator_ff());
 }
 
 /*
  * The private constructor
  */
-sprite_bit_decimator_fb::sprite_bit_decimator_fb()
-  : gr_sync_decimator ("bit_decimator_fb",
-		   gr_make_io_signature(2, 2, sizeof (float)),
-		   gr_make_io_signature(1, 1, sizeof (char)), 512)
+sprite_soft_bit_decimator_ff::sprite_soft_bit_decimator_ff()
+  : gr_sync_decimator("soft_bit_decimator_ff",
+		   gr_make_io_signature(1, 1, sizeof (float)),
+		   gr_make_io_signature(1, 1, sizeof (float)), 512)
 {
 	// Put in <+constructor stuff+> here
 }
 
-
 /*
  * Our virtual destructor.
  */
-sprite_bit_decimator_fb::~sprite_bit_decimator_fb()
+sprite_soft_bit_decimator_ff::~sprite_soft_bit_decimator_ff()
 {
 	// Put in <+destructor stuff+> here
 }
 
 
 int
-sprite_bit_decimator_fb::work(int noutput_items,
+sprite_soft_bit_decimator_ff::work(int noutput_items,
 		  gr_vector_const_void_star &input_items,
 		  gr_vector_void_star &output_items)
 {
-	const float *in = (const float *) input_items[0];
-	const float *threshold = (const float *) input_items[1];
-	char *out = (char *) output_items[0];
+	const float *in = (const float *)input_items[0];
+	float *out = (float *)output_items[0];
 
 	for(int k = 0; k < noutput_items; ++k)
 	{
-		char detected = 0;
+		m_min = 0;
+		m_max = 0;
 
 		for(int j = 512*k; j < 512*(k+1); ++j)
 		{
-			if(in[j] > threshold[j])
+			if(in[j] > m_max)
 			{
-				detected = 1;
+				m_max = in[j];
 			}
-			else if(in[j] < -threshold[j])
+			else if(in[j] < m_min)
 			{
-				detected = -1;
+				m_min = in[j];
 			}
 		}
 
-		out[k] = detected;
+		out[k] = m_max > -m_min ? m_max : m_min;
 	}
 
 	// Tell runtime system how many output items we produced.

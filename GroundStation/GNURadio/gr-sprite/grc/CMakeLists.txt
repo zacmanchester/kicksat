@@ -21,5 +21,6 @@ install(FILES
     sprite_stddev_ff.xml
     sprite_bit_threshold_fb.xml
     sprite_bit_decimator_fb.xml
-    sprite_decoder_b.xml DESTINATION share/gnuradio/grc/blocks
+    sprite_decoder_b.xml
+    sprite_soft_bit_decimator_ff.xml DESTINATION share/gnuradio/grc/blocks
 )

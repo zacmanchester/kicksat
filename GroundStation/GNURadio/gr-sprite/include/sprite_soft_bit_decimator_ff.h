@@ -19,31 +19,34 @@
  */
 
 
-#ifndef INCLUDED_SPRITE_BIT_DECIMATOR_FB_H
-#define INCLUDED_SPRITE_BIT_DECIMATOR_FB_H
+#ifndef INCLUDED_SPRITE_SOFT_BIT_DECIMATOR_FF_H
+#define INCLUDED_SPRITE_SOFT_BIT_DECIMATOR_FF_H
 
 #include <sprite_api.h>
 #include <gr_sync_decimator.h>
 
-class sprite_bit_decimator_fb;
+class sprite_soft_bit_decimator_ff;
 
-typedef boost::shared_ptr<sprite_bit_decimator_fb> sprite_bit_decimator_fb_sptr;
+typedef boost::shared_ptr<sprite_soft_bit_decimator_ff> sprite_soft_bit_decimator_ff_sptr;
 
-SPRITE_API sprite_bit_decimator_fb_sptr sprite_make_bit_decimator_fb();
+SPRITE_API sprite_soft_bit_decimator_ff_sptr sprite_make_soft_bit_decimator_ff();
 
 /*!
  * \brief <+description+>
  * \ingroup block
  *
  */
-class SPRITE_API sprite_bit_decimator_fb : public gr_sync_decimator
+class SPRITE_API sprite_soft_bit_decimator_ff : public gr_sync_decimator
 {
  private:
-	friend SPRITE_API sprite_bit_decimator_fb_sptr sprite_make_bit_decimator_fb();
- 	sprite_bit_decimator_fb();
+	friend SPRITE_API sprite_soft_bit_decimator_ff_sptr sprite_make_soft_bit_decimator_ff();
+  	sprite_soft_bit_decimator_ff();
+
+  	float m_min;
+  	float m_max;
 
  public:
-  	~sprite_bit_decimator_fb();
+	~sprite_soft_bit_decimator_ff();
 
 	// Where all the action really happens
 	int work (int noutput_items,
@@ -51,5 +54,5 @@ class SPRITE_API sprite_bit_decimator_fb : public gr_sync_decimator
 	    gr_vector_void_star &output_items);
 };
 
-#endif /* INCLUDED_SPRITE_BIT_DECIMATOR_FB_H */
+#endif /* INCLUDED_SPRITE_SOFT_BIT_DECIMATOR_FF_H */
 
