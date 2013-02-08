@@ -40,10 +40,7 @@ void setup() {
 void loop() {
   //Blink LED while transmitter is on
   digitalWrite(5, HIGH);
-  m_radio.transmit("H", 1);
-  m_radio.transmit("i", 1);
-  m_radio.transmit("!", 1);
-  m_radio.transmit(" ",1);
+  m_radio.transmit("Hello Earthlings\n", 17);
   digitalWrite(5, LOW);
   
   //Wait a second
