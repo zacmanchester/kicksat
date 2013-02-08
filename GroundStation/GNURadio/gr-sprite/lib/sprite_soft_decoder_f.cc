@@ -23,22 +23,21 @@
 #endif
 
 #include <gr_io_signature.h>
-#include "sprite_decoder_b.h"
+#include "sprite_soft_decoder_f.h"
 
-#include <iostream> 
 
-sprite_decoder_b_sptr
-sprite_make_decoder_b(const std::string &filename)
+sprite_soft_decoder_f_sptr
+sprite_make_soft_decoder_f ()
 {
-	return gnuradio::get_initial_sptr(new sprite_decoder_b(filename));
+	return gnuradio::get_initial_sptr(new sprite_soft_decoder_f());
 }
 
 /*
  * The private constructor
  */
-sprite_decoder_b::sprite_decoder_b(const std::string &filename)
-  : gr_sync_block ("decoder_b",
-		   gr_make_io_signature(1, 1, sizeof(char)),
+sprite_soft_decoder_f::sprite_soft_decoder_f()
+  : gr_sync_block ("soft_decoder_f",
+		   gr_make_io_signature(2, 2, sizeof(float)),
 		   gr_make_io_signature(0, 0, 0))
 {
 	set_history(15);
@@ -49,45 +48,34 @@ sprite_decoder_b::sprite_decoder_b(const std::string &filename)
 /*
  * Our virtual destructor.
  */
-sprite_decoder_b::~sprite_decoder_b()
+sprite_soft_decoder_f::~sprite_soft_decoder_f()
 {
 	// Put in <+destructor stuff+> here
 }
 
-char sprite_decoder_b::bytedecode(const char* c)
+char sprite_soft_decoder_f::softdecode(const float *buffer)
 {
-	//TODO: Hamming
 
-	//Pack into output byte
-	char m = 0;
-	for(int k = 0; k < 8; ++k)
-	{
-		if(c[7+k] > 0)
-		{
-			m |= m_bits[k];
-		}
-	}
-
-	return m;
 }
 
-int sprite_decoder_b::work(int noutput_items,
+int sprite_soft_decoder_f::work(int noutput_items,
 		  gr_vector_const_void_star &input_items,
 		  gr_vector_void_star &output_items)
 {
-	const char *in = (const char*) input_items[0];
+	const float *in = (const float *) input_items[0];
+	const float *threshold = (const float *) input_items[1];
 
 	for(int k = 0; k < noutput_items; ++k)
 	{
 		if(!m_counter)
 		{
-			if(in[k])
+			if(in[k] > threshold[k] || in[k] < -threshold[k])
 			{
 				//we found a bit!
 				m_counter = 14;
 
 				//Decode the byte
-				char m = bytedecode(&in[k]);
+				char m = softdecode(&in[k]);
 
 				//For now just write stuff to the console as we get it
 				std::cout << m;

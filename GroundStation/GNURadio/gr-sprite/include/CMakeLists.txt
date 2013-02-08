@@ -27,5 +27,6 @@ install(FILES
     sprite_bit_threshold_fb.h
     sprite_bit_decimator_fb.h
     sprite_decoder_b.h
-    sprite_soft_bit_decimator_ff.h DESTINATION include/sprite
+    sprite_soft_bit_decimator_ff.h
+    sprite_soft_decoder_f.h DESTINATION include/sprite
 )

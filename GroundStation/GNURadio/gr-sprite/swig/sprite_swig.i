@@ -15,6 +15,7 @@
 #include "sprite_bit_decimator_fb.h"
 #include "sprite_decoder_b.h"
 #include "sprite_soft_bit_decimator_ff.h"
+#include "sprite_soft_decoder_f.h"
 %}
 
 
@@ -35,3 +36,6 @@ GR_SWIG_BLOCK_MAGIC(sprite,decoder_b);
 
 GR_SWIG_BLOCK_MAGIC(sprite,soft_bit_decimator_ff);
 %include "sprite_soft_bit_decimator_ff.h"
+
+GR_SWIG_BLOCK_MAGIC(sprite,soft_decoder_f);
+%include "sprite_soft_decoder_f.h"
