@@ -9,6 +9,7 @@ void setup() {
 
 void loop() {
   
+  //Values are in Guass
   MagneticField b = mag.read();
   
   Serial.print("x: ");

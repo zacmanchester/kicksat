@@ -14,7 +14,7 @@ void loop() {
   MagneticField b = mag.read();
   
   //Calculate heading in radians from magnetic field components
-  float heading = atan2(-b.y, -b.x);
+  float heading = atan2(b.y, b.x);
   
   //correct for declination
   heading += declination;
@@ -27,13 +27,6 @@ void loop() {
   heading = heading*(180/PI);
   
   Serial.println(heading);
-  
-  Serial.print("x: ");
-  Serial.print(b.x);
-  Serial.print("    y:");
-  Serial.print(b.y);
-  Serial.print("    z: ");
-  Serial.println(b.z);
   
   delay(500);
 }
