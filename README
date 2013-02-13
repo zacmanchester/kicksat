@@ -11,12 +11,9 @@ KickSat is an open-source and open-hardware project created by the Space Systems
 	
 - Sprite Deployer (A deployer that fits in a Pumpkin CubeSat structure)
 	* CAD design files for the Sprite deployer
-	* ICD specifying mechanical and electrical interfaces
-	* Driver code for the Pumpkin flight computer
 	* Bill of materials
 
 - Development Kit
-	* A customized Ubuntu-based linux liveCD
-	* MSP-GCC toolchain configured for the Sprite
+	* Energia (Arduino-based) development environment for the Sprite
 	* GNU Radio configured to receive Sprite signals 
 	* Code examples
