@@ -55,24 +55,14 @@ void loop() {
   //Convert to degrees
   heading = heading*(180/PI);
   
-  int heading_int = int(heading);
-  int heading_decimal = int((heading-heading_int)*10);
+  char heading_string[5];
   
-  char string[7];
+  sprintf(heading_string,"%3i",int(heading));
+  heading_string[3] = '\n';
   
-  sprintf(string,"%3i %1i",heading_int,heading_decimal);
-  string[3] = '.'; //Weirdness with handling of '.' character in sprintf
-  string[5] = '\n'; //Add newline to end of string
-  
-  /*
-  Serial.print(heading_int);
-  Serial.print(".");
-  Serial.println(heading_decimal);
-  */
-  
-  Serial.print(string);
+  Serial.print(heading_string);
 
-  radio.transmit(string,6);
+  radio.transmit(heading_string,4);
   
   digitalWrite(5,LOW);
   
