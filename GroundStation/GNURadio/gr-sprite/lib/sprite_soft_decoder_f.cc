@@ -22,6 +22,8 @@
 #include "config.h"
 #endif
 
+#include <iostream>
+
 #include <gr_io_signature.h>
 #include "sprite_soft_decoder_f.h"
 
