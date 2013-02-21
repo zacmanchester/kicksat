@@ -45,7 +45,6 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
     char softdecode(const float *buffer);
     
     char m_counter;
-    static char m_bits[8];
   	static float C[2048][15];
 
  public:
@@ -56,8 +55,6 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
 	    gr_vector_const_void_star &input_items,
 	    gr_vector_void_star &output_items);
 };
-
-char sprite_soft_decoder_f::m_bits[] = {0b00000001, 0b00000010, 0b00000100, 0b00001000, 0b00010000, 0b00100000, 0b01000000, 0b10000000};
 
 float sprite_soft_decoder_f::C[2048][15] = {
   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -2110,4 +2107,3 @@ float sprite_soft_decoder_f::C[2048][15] = {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
 #endif /* INCLUDED_SPRITE_SOFT_DECODER_F_H */
-

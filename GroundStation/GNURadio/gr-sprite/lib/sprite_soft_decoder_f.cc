@@ -23,6 +23,9 @@
 #endif
 
 #include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 #include <gr_io_signature.h>
 #include "sprite_soft_decoder_f.h"
@@ -68,7 +71,7 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 	{
 		mag += buffer[k]*buffer[k];
 	}
-	mag = sqrt(mag);
+	mag = sqrt(15*mag);
 
 	//Multiply received vector by codeword matrix and look for maximum
 	for(int i = 0; i < 2048; ++i)
@@ -85,26 +88,10 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 		}
 	}
 
-	/* Debug stuff
-	std::cout << '<';
-	std::cout << index;
-	std::cout << ", ";
-	std::cout << max_corr;
-	std::cout << '>';
-
-	char output = 0;
-	for(int i = 0; i < 8; ++i)
-	{
-		if(buffer[14-i] > 0)
-		{
-			output |= m_bits[i];
-		}
-	}
-
-	std::cout << '(';
-	std::cout << (int)output;
-	std::cout << ')';
-	*/
+	/* Debug stuff */
+	cout << '<';
+	cout << setiosflags(ios::fixed) << setprecision(2) << max_corr;
+	cout << '>';
 
 	return (char)(0xFF & index);
 }
@@ -129,7 +116,7 @@ int sprite_soft_decoder_f::work(int noutput_items,
 				char m = softdecode(&in[k]);
 
 				//For now just write stuff to the console as we get it
-				std::cout << m;
+				cout << m;
 			}
 		}
 		else
