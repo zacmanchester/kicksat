@@ -45,7 +45,7 @@ sprite_soft_decoder_f::sprite_soft_decoder_f()
 		   gr_make_io_signature(2, 2, sizeof(float)),
 		   gr_make_io_signature(0, 0, 0))
 {
-	set_history(15);
+	set_history(18);
 	m_counter = 0;
 }
 
@@ -74,7 +74,7 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 	mag = sqrt(15*mag);
 
 	//Multiply received vector by codeword matrix and look for maximum
-	for(int i = 0; i < 2048; ++i)
+	for(int i = 0; i < 768; ++i)
 	{
 		corr = 0;
 		for(int j = 0; j < 15; ++j)
@@ -107,16 +107,31 @@ int sprite_soft_decoder_f::work(int noutput_items,
 	{
 		if(!m_counter)
 		{
-			if(in[k] > threshold[k] || in[k] < -threshold[k])
+			//We're looking for a series of 15 bits in a row with nothing on either side
+			if(in[k] < threshold[k] && in[k] > -threshold[k]
+				&& in[k+1] < threshold[k+1] && in[k+1] > -threshold[k+1]
+				&& in[k+17] < threshold[k+17] && in[k+17] > -threshold[k+17]
+				&& in[k+18] < threshold[k+18] && in[k+18] > -threshold[k+18])
 			{
-				//we found a byte!
-				m_counter = 14;
+				int numBits = 0;
+				for(int j = 2; j < 17; ++j)
+				{
+					if(in[k+j] > threshold[k+j] || in[k+j] < -threshold[k+j])
+					{
+						++numBits;
+					}
+				}
 
-				//Decode the byte
-				char m = softdecode(&in[k]);
+				if(numBits > 12)
+				{
+					//we found a byte!
+					m_counter = 16;
 
-				//For now just write stuff to the console as we get it
-				cout << m;
+					char m = softdecode(&in[k+2]);
+
+					//For now just write stuff to the console as we get it
+					cout << m;
+				}
 			}
 		}
 		else

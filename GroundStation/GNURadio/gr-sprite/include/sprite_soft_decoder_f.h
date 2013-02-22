@@ -45,7 +45,7 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
     char softdecode(const float *buffer);
     
     char m_counter;
-  	static float C[2048][15];
+  	static float C[768][15];
 
  public:
   	~sprite_soft_decoder_f();
