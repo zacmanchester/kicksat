@@ -25,6 +25,8 @@
 #include <sprite_api.h>
 #include <gr_sync_block.h>
 
+#include <vector>
+
 class sprite_soft_decoder_f;
 
 typedef boost::shared_ptr<sprite_soft_decoder_f> sprite_soft_decoder_f_sptr;
@@ -44,7 +46,12 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
   	
     char softdecode(const float *buffer);
     
-    char m_counter;
+    int m_counter;
+    int m_initialized;
+    float m_squares[17];
+    float  m_energies[125];
+    std::vector<float> m_median_buffer;
+
   	static float C[768][15];
 
  public:

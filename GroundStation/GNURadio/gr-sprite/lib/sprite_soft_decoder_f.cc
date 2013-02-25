@@ -24,6 +24,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -42,11 +44,13 @@ sprite_make_soft_decoder_f ()
  */
 sprite_soft_decoder_f::sprite_soft_decoder_f()
   : gr_sync_block ("soft_decoder_f",
-		   gr_make_io_signature(2, 2, sizeof(float)),
+		   gr_make_io_signature(1, 1, sizeof(float)),
 		   gr_make_io_signature(0, 0, 0))
 {
-	set_history(18);
+	set_history(17);
 	m_counter = 0;
+	m_initialized = 0;
+	m_median_buffer = vector<float>(63);
 }
 
 
@@ -101,42 +105,59 @@ int sprite_soft_decoder_f::work(int noutput_items,
 		  gr_vector_void_star &output_items)
 {
 	const float *in = (const float *) input_items[0];
-	const float *threshold = (const float *) input_items[1];
 
 	for(int k = 0; k < noutput_items; ++k)
 	{
-		if(!m_counter)
+		//Compute the energy in 3 overlapping 15-sample intervals
+		for(int j = 0; j < 17; ++j)
 		{
-			//We're looking for a series of 15 bits in a row with nothing on either side
-			if(in[k] < threshold[k] && in[k] > -threshold[k]
-				&& in[k+1] < threshold[k+1] && in[k+1] > -threshold[k+1]
-				&& in[k+17] < threshold[k+17] && in[k+17] > -threshold[k+17]
-				&& in[k+18] < threshold[k+18] && in[k+18] > -threshold[k+18])
+			m_squares[j] = in[k+j]*in[k+j];
+		}
+
+		float energy1 = 0;
+		float energy2 = 0;
+		float energy3 = 0;
+		for(int j = 0; j < 15; ++j)
+		{
+			energy1 += m_squares[j];
+			energy2 += m_squares[j+1];
+			energy3 += m_squares[j+2];
+		}
+		
+		//Use the first second (125 samples) to characterize the noise
+		if(m_initialized)
+		{
+			//Updoate the energies with the new sample and increment the counter
+			m_counter %= 125;
+			m_energies[m_counter] = energy1;
+			++m_counter;
+
+			//Calculate the median energy to get an estimate of the noise
+			partial_sort_copy(m_energies, m_energies+125, m_median_buffer.begin(), m_median_buffer.end());
+			float medE = m_median_buffer[62];
+
+			/* Debug Stuff
+			cout << "median = ";
+			cout << medE;
+			cout << "\n"; */
+
+			//If the SNR is > 8 (9 dB) and the energy is a local max
+			if(energy2 > 8*medE && energy1 < energy2 && energy3 < energy2)
 			{
-				int numBits = 0;
-				for(int j = 2; j < 17; ++j)
-				{
-					if(in[k+j] > threshold[k+j] || in[k+j] < -threshold[k+j])
-					{
-						++numBits;
-					}
-				}
-
-				if(numBits > 12)
-				{
-					//we found a byte!
-					m_counter = 16;
-
-					char m = softdecode(&in[k+2]);
-
-					//For now just write stuff to the console as we get it
-					cout << m;
-				}
+				char result = softdecode(&in[k+1]);
+				cout << result;
 			}
 		}
 		else
 		{
-			--m_counter;
+			//Use the first second of data (125 samples) to initialize the median calculation
+			m_energies[m_counter] = energy1;
+			++m_counter;
+
+			if(m_counter >= 125)
+			{
+				m_initialized = 1;
+			}
 		}
 	}
 

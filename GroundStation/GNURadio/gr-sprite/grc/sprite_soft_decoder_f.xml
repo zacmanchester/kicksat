@@ -16,9 +16,4 @@
     <type>float</type>
   </sink>
 
-  <sink>
-    <name>threshold</name>
-    <type>float</type>
-  </sink>
-
 </block>
