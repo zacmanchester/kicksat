@@ -52,7 +52,7 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
     float  m_energies[125];
     std::vector<float> m_median_buffer;
 
-  	static float C[256][15];
+  	static float C[256][16];
 
  public:
   	~sprite_soft_decoder_f();
