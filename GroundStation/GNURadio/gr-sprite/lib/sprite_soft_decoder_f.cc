@@ -47,7 +47,7 @@ sprite_soft_decoder_f::sprite_soft_decoder_f()
 		   gr_make_io_signature(1, 1, sizeof(float)),
 		   gr_make_io_signature(0, 0, 0))
 {
-	set_history(17);
+	set_history(18);
 	m_counter = 0;
 	m_initialized = 0;
 	m_median_buffer = vector<float>(63);
@@ -71,17 +71,17 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 
 	//Calculate the magnitude of the vector
 	mag = 0;
-	for(int k = 0; k < 15; ++k)
+	for(int k = 0; k < 16; ++k)
 	{
 		mag += buffer[k]*buffer[k];
 	}
-	mag = sqrt(15*mag);
+	mag = sqrt(16*mag);
 
 	//Multiply received vector by codeword matrix and look for maximum
-	for(int i = 0; i < 768; ++i)
+	for(int i = 0; i < 256; ++i)
 	{
 		corr = 0;
-		for(int j = 0; j < 15; ++j)
+		for(int j = 0; j < 16; ++j)
 		{
 			corr += C[i][j]*buffer[j]/mag;
 		}
@@ -97,7 +97,7 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 	cout << setiosflags(ios::fixed) << setprecision(2) << max_corr;
 	cout << '>';
 
-	return (char)(0xFF & index);
+	return (char)index;
 }
 
 int sprite_soft_decoder_f::work(int noutput_items,
@@ -109,7 +109,7 @@ int sprite_soft_decoder_f::work(int noutput_items,
 	for(int k = 0; k < noutput_items; ++k)
 	{
 		//Compute the energy in 3 overlapping 15-sample intervals
-		for(int j = 0; j < 17; ++j)
+		for(int j = 0; j < 18; ++j)
 		{
 			m_squares[j] = in[k+j]*in[k+j];
 		}
@@ -117,7 +117,7 @@ int sprite_soft_decoder_f::work(int noutput_items,
 		float energy1 = 0;
 		float energy2 = 0;
 		float energy3 = 0;
-		for(int j = 0; j < 15; ++j)
+		for(int j = 0; j < 16; ++j)
 		{
 			energy1 += m_squares[j];
 			energy2 += m_squares[j+1];
