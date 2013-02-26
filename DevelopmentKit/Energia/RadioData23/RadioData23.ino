@@ -41,10 +41,10 @@ void setup() {
 void loop() {
   //Blink LED while transmitter is on
   digitalWrite(5, HIGH);
-  m_radio.transmit("aaa\n", 4);
+  m_radio.transmit("Hello Earthlings\n", 17);
   digitalWrite(5, LOW);
   
   //Wait a second
-  delay(5000);
+  delay(2000);
 };
 
