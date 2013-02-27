@@ -62,7 +62,7 @@ sprite_soft_decoder_f::~sprite_soft_decoder_f()
 	// Put in <+destructor stuff+> here
 }
 
-char sprite_soft_decoder_f::softdecode(const float *buffer)
+float sprite_soft_decoder_f::softdecode(const float *buffer, char *output)
 {
 	int index = 0;
 	float max_corr = 0;
@@ -92,12 +92,8 @@ char sprite_soft_decoder_f::softdecode(const float *buffer)
 		}
 	}
 
-	/* Debug stuff */
-	cout << '<';
-	cout << setiosflags(ios::fixed) << setprecision(2) << max_corr;
-	cout << '>';
-
-	return (char)index;
+	*output = (char)index;
+	return max_corr;
 }
 
 int sprite_soft_decoder_f::work(int noutput_items,
@@ -141,10 +137,41 @@ int sprite_soft_decoder_f::work(int noutput_items,
 			cout << medE;
 			cout << "\n"; */
 
-			//If the SNR is > 8 (9 dB) and the energy is a local max
-			if(energy2 > 8*medE && energy1 < energy2 && energy3 < energy2)
+			//If the SNR is > 10 and the energy is a local max
+			if(energy2 > 10*medE && energy1 < energy2 && energy3 < energy2)
 			{
-				char result = softdecode(&in[k+1]);
+				char result1;
+				float corr1 = softdecode(&in[k], &result1);
+
+				char result2;
+				float corr2 = softdecode(&in[k+1], &result2);
+
+				char result3;
+				float corr3 = softdecode(&in[k+2], &result3);
+
+				char result;
+				float corr;
+				if(corr1 > corr2 && corr1 > corr3)
+				{
+					corr = corr1;
+					result = result1;
+				}
+				else if(corr3 > corr2 && corr3 > corr1)
+				{
+					corr = corr3;
+					result = result3;
+				}
+				else
+				{
+					corr = corr2;
+					result = result2;
+				}
+				
+				/* Debug stuff */
+				cout << '<';
+				cout << setiosflags(ios::fixed) << setprecision(2) << corr;
+				cout << '>';
+
 				cout << result;
 			}
 		}

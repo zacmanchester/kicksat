@@ -44,7 +44,7 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
 	friend SPRITE_API sprite_soft_decoder_f_sptr sprite_make_soft_decoder_f();
   	sprite_soft_decoder_f();
   	
-    char softdecode(const float *buffer);
+    float softdecode(const float *buffer, char *output);
     
     int m_counter;
     int m_initialized;
