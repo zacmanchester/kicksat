@@ -25,6 +25,8 @@
 #include <gr_io_signature.h>
 #include "sprite_soft_bit_decimator_ff.h"
 
+#define SPRITE_DECIM_RATE 256
+
 sprite_soft_bit_decimator_ff_sptr
 sprite_make_soft_bit_decimator_ff()
 {
@@ -37,7 +39,7 @@ sprite_make_soft_bit_decimator_ff()
 sprite_soft_bit_decimator_ff::sprite_soft_bit_decimator_ff()
   : gr_sync_decimator("soft_bit_decimator_ff",
 		   gr_make_io_signature(1, 1, sizeof (float)),
-		   gr_make_io_signature(1, 1, sizeof (float)), 512)
+		   gr_make_io_signature(1, 1, sizeof (float)), SPRITE_DECIM_RATE)
 {
 	// Put in <+constructor stuff+> here
 }
@@ -64,7 +66,7 @@ sprite_soft_bit_decimator_ff::work(int noutput_items,
 		m_min = 0;
 		m_max = 0;
 
-		for(int j = 512*k; j < 512*(k+1); ++j)
+		for(int j = SPRITE_DECIM_RATE*k; j < SPRITE_DECIM_RATE*(k+1); ++j)
 		{
 			if(in[j] > m_max)
 			{

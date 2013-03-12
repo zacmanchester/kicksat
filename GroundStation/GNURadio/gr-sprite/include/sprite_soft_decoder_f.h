@@ -46,13 +46,14 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
   	
     float softdecode(const float *buffer, char *output);
     
-    int m_counter;
+    int m_energy_counter;
     int m_initialized;
-    float m_squares[24];
-    float  m_energies[125];
+    float m_squares[48];
+    float m_energies[125];
+    float m_buffer[7][22];
     std::vector<float> m_median_buffer;
 
-  	static float C[256][22];
+  	static float s_C[256][22];
 
  public:
   	~sprite_soft_decoder_f();
@@ -63,7 +64,7 @@ class SPRITE_API sprite_soft_decoder_f : public gr_sync_block
 	    gr_vector_void_star &output_items);
 };
 
-float sprite_soft_decoder_f::C[256][22] = {
+float sprite_soft_decoder_f::s_C[256][22] = {
   {1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1},
   {1, -1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 1, -1},
   {1, -1, 1, -1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, 1, -1},
