@@ -25,7 +25,7 @@
 #include <gr_io_signature.h>
 #include "sprite_soft_bit_decimator_ff.h"
 
-#define SPRITE_DECIM_RATE 256
+#define SPRITE_DECIM_RATE 320
 
 sprite_soft_bit_decimator_ff_sptr
 sprite_make_soft_bit_decimator_ff()

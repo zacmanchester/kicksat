@@ -42,17 +42,17 @@ sprite_correlator_cf::sprite_correlator_cf (int prn_id)
 		gr_make_io_signature (1, 1, sizeof (gr_complex)),
 		gr_make_io_signature (1, 1, sizeof (float)))
 {
-	set_history(512);
+	set_history(640);
 	
 	generate_prn(prn_id);
 	
 	cc430_modulator(m_prn, m_template);
-	for (int k = 0; k < 512; k++)
+	for (int k = 0; k < 640; k++)
 	{
 		m_template[k] = conj(m_template[k]);
 	}
 	
-	m_fft = new gri_fft_complex(512, true, 1);
+	m_fft = new gri_fft_complex(640, true, 1);
 	m_fft_buffer_in = m_fft->get_inbuf();
 	m_fft_buffer_out = m_fft->get_outbuf();
 }
@@ -63,32 +63,24 @@ sprite_correlator_cf::~sprite_correlator_cf ()
 
 void sprite_correlator_cf::generate_prn(int prn_id)
 {
-	if(prn_id == -2)
+	if(prn_id == 0)
 	{	
-		//Deep copy M-sequence
-		for (int k = 0; k < 512; k++)
+		//Deep copy U-sequence
+		for (int k = 0; k < 640; k++)
 		{
-			m_prn[k] = mseq1[k];
+			m_prn[k] = s_u[k];
 		}
 	}
-	else if(prn_id == -1)
+	else //if(prn_id >= 0 && prn_id < 640)
 	{	
-		//Deep copy M-sequence
-		for (int k = 0; k < 512; k++)
+		//Generate SLCE Codes by xor'ing U-sequence in 2 different phases
+		for (int k = 0; k < 640-prn_id; k++)
 		{
-			m_prn[k] = mseq2[k];
+			m_prn[k] = s_u[k] ^ s_u[k+prn_id];
 		}
-	}
-	else //if(prn_id >= 0 && prn_id < 512)
-	{	
-		//Generate Gold Codes by xor'ing 2 M-sequences in different phases
-		for (int k = 0; k < 512-prn_id; k++)
+		for (int k = 640-prn_id; k < 640; k++)
 		{
-			m_prn[k] = mseq1[k] ^ mseq2[k+prn_id];
-		}
-		for (int k = 512-prn_id; k < 512; k++)
-		{
-			m_prn[k] = mseq1[k] ^ mseq2[k-512+prn_id];
+			m_prn[k] = s_u[k] ^ s_u[k-640+prn_id];
 		}
 	}
 }
@@ -101,7 +93,7 @@ void sprite_correlator_cf::cc430_modulator(int* prnBits, gr_complex* baseBand)
 	
 	//Differentially encode with +/-1 values
 	diffs[0] = -2*prnBits[0] + 1;
-	for (int k = 1; k < 512; k++)
+	for (int k = 1; k < 640; k++)
 	{
 		char diff = prnBits[k]-prnBits[k-1];
 		if(diff == 0)
@@ -119,20 +111,20 @@ void sprite_correlator_cf::cc430_modulator(int* prnBits, gr_complex* baseBand)
 	qBB[0] = diffs[0];
 	qBB[1] = diffs[0];
 	
-	for(int k = 1; k < 510; k+=2)
+	for(int k = 1; k < 638; k+=2)
 	{
 		iBB[k] = diffs[k]*iBB[k-1];
 		iBB[k+1] = iBB[k];
 	}
-	iBB[511] = diffs[511]*iBB[510];
+	iBB[639] = diffs[639]*iBB[638];
 	
-	for(int k = 2; k < 512; k+=2)
+	for(int k = 2; k < 640; k+=2)
 	{
 		qBB[k] = diffs[k]*qBB[k-1];
 		qBB[k+1] = qBB[k];
 	}
 	
-	for(int k = 0; k < 512; k++)
+	for(int k = 0; k < 640; k++)
 	{
 		baseBand[k] = iBB[k]*cos(M_PI/2*k) + 1i*qBB[k]*sin(M_PI/2*k);
 	}
@@ -153,7 +145,7 @@ sprite_correlator_cf::work (int noutput_items,
 	for(int k = 0; k < noutput_items; ++k) {
 		
 		//Pointwise multiply by baseband template and copy to fft input
-		for (int j = 0; j < 512; ++j)
+		for (int j = 0; j < 640; ++j)
 		{
 			fft_in[j] = m_template[j]*in[j+k];
 		}
@@ -164,7 +156,7 @@ sprite_correlator_cf::work (int noutput_items,
 		//Find largest value in FFT
 		float mag2 = real(fft_out[0]*conj(fft_out[0]));
 		float max = mag2;
-		for (int j = 1; j < 512; ++j)
+		for (int j = 1; j < 640; ++j)
 		{
 			mag2 = real(fft_out[j]*conj(fft_out[j]));
 			if (mag2 > max)
