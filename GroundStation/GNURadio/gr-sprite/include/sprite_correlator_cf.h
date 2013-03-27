@@ -55,7 +55,7 @@ class SPRITE_API sprite_correlator_cf : public gr_sync_block
 		
 	gri_fft_complex* m_fft;
 		
-	const static int s_u[640];
+	static int s_u[640];
 
  public:
 	~sprite_correlator_cf ();
@@ -65,7 +65,7 @@ class SPRITE_API sprite_correlator_cf : public gr_sync_block
 		gr_vector_void_star &output_items);
 };
 
-const int sprite_correlator_cf::s_u[] = {
+int sprite_correlator_cf::s_u[] = {
 	0,0,0,0,1,1,0,1,1,1,1,1,1,0,1,0,0,0,0,1,1,0,0,1,0,0,1,0,1,1,0,1,
 	1,1,1,0,1,1,1,1,1,1,0,1,1,0,0,0,1,1,0,1,1,1,0,0,0,1,1,1,0,1,0,0,
 	1,1,1,0,0,0,0,1,1,1,1,1,0,1,0,1,1,0,1,1,1,0,1,0,0,1,0,0,0,0,1,1,
