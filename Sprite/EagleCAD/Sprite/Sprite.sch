@@ -2183,13 +2183,13 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="31.8" y1="0" x2="31.8" y2="13" width="0.127" layer="21"/>
 <wire x1="0" y1="0" x2="2.6" y2="2.9" width="0.127" layer="21"/>
 <wire x1="31.8" y1="13" x2="2.6" y2="2.9" width="0.127" layer="21"/>
-<smd name="MINUS2" x="15.9" y="-1.1" dx="29" dy="1" layer="1"/>
+<smd name="MINUS2" x="15.9" y="-0.8" dx="29" dy="1" layer="1"/>
 <smd name="PLUS" x="15.9" y="7.75" dx="26" dy="14" layer="1"/>
 <wire x1="31.8" y1="15.5" x2="0" y2="15.5" width="0.127" layer="21"/>
 <wire x1="0" y1="15.5" x2="0" y2="2.5" width="0.127" layer="21"/>
 <wire x1="31.8" y1="15.5" x2="29.2" y2="12.6" width="0.127" layer="21"/>
 <wire x1="0" y1="2.5" x2="29.2" y2="12.6" width="0.127" layer="21"/>
-<smd name="MINUS1" x="15.9" y="16.6" dx="29" dy="1" layer="1"/>
+<smd name="MINUS1" x="15.9" y="16.3" dx="29" dy="1" layer="1"/>
 </package>
 </packages>
 <symbols>
