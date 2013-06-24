@@ -2144,9 +2144,9 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <library name="SpriteAntenna">
 <packages>
 <package name="ANTENNA">
-<pad name="IN3" x="-1.27" y="0" drill="0.5" diameter="1.27" shape="square"/>
-<pad name="IN2" x="0" y="0" drill="0.5" diameter="1.27" shape="square"/>
-<pad name="IN1" x="1.27" y="0" drill="0.5" diameter="1.27" shape="square"/>
+<pad name="IN3" x="-1.27" y="0" drill="0.6" diameter="1.27" shape="offset"/>
+<pad name="IN2" x="1.27" y="0" drill="0.6" diameter="1.27" shape="offset" rot="R180"/>
+<pad name="IN1" x="0" y="0" drill="0.6" diameter="1.27" shape="square" rot="R180"/>
 </package>
 </packages>
 <symbols>
@@ -5781,7 +5781,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="GND10" library="SparkFun" deviceset="GND" device=""/>
 <part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="270R"/>
 <part name="JP3" library="SparkFun" deviceset="M02" device="PTH"/>
-<part name="U$1" library="SpriteTCXO" deviceset="TCXO_7Z" device=""/>
+<part name="X1" library="SpriteTCXO" deviceset="TCXO_7Z" device=""/>
 <part name="P+11" library="SparkFun" deviceset="VCC" device=""/>
 <part name="P2" library="SpritePin" deviceset="SPRITE_PIN" device=""/>
 <part name="P1" library="SpritePin" deviceset="SPRITE_PIN" device=""/>
@@ -5853,7 +5853,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="GND10" gate="1" x="86.36" y="99.06"/>
 <instance part="R5" gate="G$1" x="104.14" y="104.14"/>
 <instance part="JP3" gate="G$1" x="114.3" y="88.9" rot="MR180"/>
-<instance part="U$1" gate="G$1" x="241.3" y="50.8" rot="MR0"/>
+<instance part="X1" gate="G$1" x="241.3" y="50.8" rot="MR0"/>
 <instance part="P+11" gate="1" x="251.46" y="48.26"/>
 <instance part="P2" gate="G$1" x="127" y="144.78"/>
 <instance part="P1" gate="G$1" x="127" y="137.16"/>
@@ -5953,7 +5953,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="347.98" y1="116.84" x2="347.98" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="G$1" pin="VCC"/>
+<pinref part="X1" gate="G$1" pin="VCC"/>
 <pinref part="P+11" gate="1" pin="VCC"/>
 <wire x1="248.92" y1="45.72" x2="251.46" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="251.46" y1="45.72" x2="251.46" y2="48.26" width="0.1524" layer="91"/>
@@ -6063,7 +6063,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="86.36" y1="104.14" x2="86.36" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="G$1" pin="GND"/>
+<pinref part="X1" gate="G$1" pin="GND"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="226.06" y1="45.72" x2="233.68" y2="45.72" width="0.1524" layer="91"/>
 </segment>
@@ -6294,7 +6294,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <net name="N$12" class="0">
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
-<pinref part="U$1" gate="G$1" pin="OUT"/>
+<pinref part="X1" gate="G$1" pin="OUT"/>
 <wire x1="231.14" y1="55.88" x2="233.68" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
