@@ -18,7 +18,7 @@ cd ~/SpriteRadioSrc && git clone --progress git://git.osmocom.org/rtl-sdr.git &&
 
 # Install RTL-SDR GNURadio Block
 #
-cd ~/SpriteRadioSrc && git clone --progress git://git.osmocom.org/gr-osmosdr && cd gr-osmosdr && mkdir build && cd build && cmake .. && make && sudo make install
+cd ~/SpriteRadioSrc && git clone --progress git://git.osmocom.org/gr-osmosdr && cd gr-osmosdr && git checkout gr3.6 && mkdir build && cd build && cmake .. && make && sudo make install
 
 
 # Install Sprite GNURadio Blocks
