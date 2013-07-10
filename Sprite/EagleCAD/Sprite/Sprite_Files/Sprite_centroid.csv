@@ -1,0 +1,31 @@
+Centroid Data for pc board: "Sprite.brd" as of: 7/10/13 10:39 AM
+Measurements are in inches. Comma delimited
+Only surface mount components included
+
+RefDes,Layer,LocationX,LocationY,Rotation
+C1,Top,0.874,0.089,180
+C2,Top,0.490,0.161,180
+C3,Top,0.490,0.213,180
+C4,Top,0.742,0.472,0
+C5,Top,0.974,0.079,270
+C6,Top,1.045,0.079,270
+C7,Top,0.423,0.348,270
+C8,Top,0.154,0.364,270
+C9,Top,0.102,0.407,270
+C10,Top,0.368,0.161,0
+C11,Top,0.073,0.106,270
+C12,Top,0.390,0.067,0
+D1,Top,0.642,0.041,270
+L1,Top,1.033,0.309,180
+P1,Top,0.689,1.319,0
+P2,Top,1.319,0.689,0
+R1,Top,1.083,0.459,270
+R2,Top,0.880,0.472,0
+R3,Top,0.559,0.437,0
+R4,Top,0.368,0.213,180
+R5,Top,0.579,0.091,180
+R6,Top,1.321,0.816,270
+U1,Top,0.762,0.280,0
+U2,Top,0.177,0.195,270
+U3,Top,0.299,0.411,270
+X1,Top,0.750,0.065,0

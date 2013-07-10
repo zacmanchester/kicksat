@@ -5784,8 +5784,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="JP3" library="SparkFun" deviceset="M02" device="PTH"/>
 <part name="X1" library="SpriteTCXO" deviceset="TCXO_7Z" device="" value="TCXO_7Z"/>
 <part name="P+11" library="SparkFun" deviceset="VCC" device=""/>
-<part name="P2" library="SpritePin" deviceset="SPRITE_PIN" device=""/>
 <part name="P1" library="SpritePin" deviceset="SPRITE_PIN" device=""/>
+<part name="P2" library="SpritePin" deviceset="SPRITE_PIN" device=""/>
 <part name="S1" library="TASC" deviceset="TASC" device=""/>
 <part name="S2" library="TASC" deviceset="TASC" device=""/>
 <part name="R6" library="rcl" deviceset="R-US_" device="R0805" value="0"/>
@@ -5856,8 +5856,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="JP3" gate="G$1" x="114.3" y="88.9" rot="MR180"/>
 <instance part="X1" gate="G$1" x="241.3" y="50.8" rot="MR0"/>
 <instance part="P+11" gate="1" x="251.46" y="48.26"/>
-<instance part="P2" gate="G$1" x="127" y="144.78"/>
-<instance part="P1" gate="G$1" x="127" y="137.16"/>
+<instance part="P1" gate="G$1" x="127" y="144.78"/>
+<instance part="P2" gate="G$1" x="127" y="137.16"/>
 <instance part="S1" gate="G$1" x="332.74" y="86.36"/>
 <instance part="S2" gate="G$1" x="363.22" y="86.36"/>
 <instance part="R6" gate="G$1" x="347.98" y="111.76" rot="R90"/>
