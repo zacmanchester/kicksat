@@ -10,7 +10,7 @@ void setup() {
 
 void loop() {
   digitalWrite(5, HIGH);   // set the LED on
-  delay(1000);
+  delay(500);
   digitalWrite(5, LOW);    // set the LED off
-  delay(1000);
+  delay(500);
 }
