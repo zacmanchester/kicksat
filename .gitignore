@@ -8,8 +8,5 @@ Thumbs.db
 *.b#*
 *.l#*
 *.eps
-build
-top_block.py
-GroundStation/GNURadio/top_block.py
 
-GroundStation/GNURadio/top_block.py
+
