@@ -1,1 +1,0 @@
-cmake .. -DPYTHON_LIBRARY=/usr/local/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib -DCMAKE_CXX_FLAGS="-lboost_system-mt"

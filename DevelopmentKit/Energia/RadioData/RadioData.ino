@@ -47,8 +47,5 @@ void loop() {
   digitalWrite(5, HIGH);
   m_radio.transmit("Hello Earthlings\n", 17);
   digitalWrite(5, LOW);
-  
-  //Wait a while
-  delay(3000);
 };
 
