@@ -3,8 +3,8 @@
 /*
   This example code will configure the CC1101 radio core in the CC430 to
   repeatedly transmit a text message. The output signal will be MSK modulated
-  at 64 kbps on a 437.5 MHz carrier and bits are encoded by alternating between
-  two different 511 bit Gold Codes.
+  at 64 kbps on a 437.24 MHz carrier and bits are encoded by alternating between
+  two different 640 bit PRN codes.
 */
 
 unsigned char prn2[80] = {
