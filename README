@@ -8,10 +8,6 @@ KickSat is an open-source and open-hardware project created by the Space Systems
 - Ground Station
 	* A GNU Radio based software radio receiver for the Sprite
 	* A link budget spreadsheet for the Sprite spacecraft
-	
-- Sprite Deployer (A deployer that fits in a Pumpkin CubeSat structure)
-	* CAD design files for the Sprite deployer
-	* Bill of materials
 
 - Development Kit
 	* Energia (Arduino-based) development environment for the Sprite
