@@ -1,18 +1,2 @@
 # This repository is no longer being updated.
 ## All KickSat-related work is now hosted at [github.com/kicksat](https://github.com/kicksat)
-
-KickSat is an open-source and open-hardware project created by the Space Systems Design Studio at Cornell University. It includes the following components:
-
-- The Sprite Spacecraft (A tiny single-board spacecraft)
-	* EagleCAD schematics and board layout files
-	* Bill of Materials
-	* Flight code for the onboard MSP430 microcontroller
-
-- Ground Station
-	* A GNU Radio based software radio receiver for the Sprite
-	* A link budget spreadsheet for the Sprite spacecraft
-
-- Development Kit
-	* Energia (Arduino-based) development environment for the Sprite
-	* GNU Radio configured to receive Sprite signals 
-	* Code examples
